@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "run-p start:server start:app",
+    "_init:db": "docker-compose exec -u postgres db /var/tmp/fixture/load-data.sh",
+    "init:db": "run-s start:db _init:db",
+    "psql": "docker-compose exec -u postgres db /bin/ash -c 'psql ${POSTGRES_DB}'",
+    "start": "run-p start:db start:server start:app",
     "start:app": "cd app && npm start",
-    "start:server": "cd server && npm start"
+    "start:db": "docker-compose up -d",
+    "start:server": "cd server && npm start",
+    "stop:db": "docker-compose down"
   },
   "repository": {
     "type": "git",

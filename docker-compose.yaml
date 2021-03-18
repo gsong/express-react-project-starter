@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:13-alpine
+    container_name: example-db
+    hostname: db
+    env_file:
+      - .env
+    volumes:
+      - ./.data/db:/var/lib/postgresql/data
+      - ./fixture:/var/tmp/fixture
+    ports:
+      - ${DB_PORT:-5432}:${DB_PORT:-5432}
+    healthcheck:
+      test: pg_isready -U postgres || exit 1
+    stop_grace_period: 1m
