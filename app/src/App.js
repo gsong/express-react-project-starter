@@ -13,13 +13,14 @@ const App = () => {
 const TaskList = () => {
   const [taskList, setTaskList] = React.useState([]);
   React.useEffect(() => {
-    setTaskList(apiClient.getTasks());
+    const loadTasks = async () => setTaskList(await apiClient.getTasks());
+    loadTasks();
   }, []);
 
   return (
     <ul>
       {taskList.map((task) => (
-        <li>{task.name}</li>
+        <li key={task.id}>{task.name}</li>
       ))}
     </ul>
   );
