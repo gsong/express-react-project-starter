@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
 
-function App() {
+import * as apiClient from "./apiClient";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="App">
+      <TaskList />
+    </main>
   );
-}
+};
+
+const TaskList = () => {
+  const [taskList, setTaskList] = React.useState([]);
+  React.useEffect(() => {
+    setTaskList(apiClient.getTasks());
+  }, []);
+
+  return (
+    <ul>
+      {taskList.map((task) => (
+        <li>{task.name}</li>
+      ))}
+    </ul>
+  );
+};
 
 export default App;
