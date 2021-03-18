@@ -1,0 +1,24 @@
+{
+  "name": "express-react-project-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "run-p start:server start:app",
+    "start:app": "cd app && npm start",
+    "start:server": "cd server && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsong/express-react-project-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gsong/express-react-project-example/issues"
+  },
+  "homepage": "https://github.com/gsong/express-react-project-example#readme",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
