@@ -9,7 +9,7 @@ services:
       - .env
     volumes:
       - ./.data/db:/var/lib/postgresql/data
-      - ./fixture:/var/tmp/fixture
+      - ./pg:/var/tmp/pg
     ports:
       - ${DB_PORT:-5432}:${DB_PORT:-5432}
     healthcheck:
