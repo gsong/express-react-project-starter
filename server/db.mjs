@@ -13,3 +13,11 @@ export const getTasks = async () => {
   const { rows } = await pool.query("SELECT * FROM tasks");
   return rows;
 };
+
+export const addTask = async (name) => {
+  const result = await pool.query(
+    "INSERT INTO tasks(name) VALUES($1) RETURNING id, name",
+    [name]
+  );
+  return result.rows[0];
+};

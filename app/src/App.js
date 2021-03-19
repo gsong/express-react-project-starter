@@ -6,6 +6,7 @@ const App = () => {
   return (
     <main className="App">
       <TaskList />
+      <AddTask />
     </main>
   );
 };
@@ -23,6 +24,26 @@ const TaskList = () => {
         <li key={task.id}>{task.name}</li>
       ))}
     </ul>
+  );
+};
+
+const AddTask = () => {
+  const [task, setTask] = React.useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    apiClient.addTask(task);
+    setTask("");
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <label>
+        Add task:{" "}
+        <input onChange={(e) => setTask(e.currentTarget.value)} value={task} />
+      </label>
+      <button>Add</button>
+    </form>
   );
 };
 
