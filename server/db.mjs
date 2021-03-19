@@ -7,6 +7,7 @@ const pool = new pg.Pool({
   user: "postgres",
   database: process.env.POSTGRES_DB,
   password: process.env.POSTGRES_PASSWORD,
+  port: 5442,
 });
 
 export const getTasks = async () => {
