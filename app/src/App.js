@@ -3,46 +3,51 @@ import * as React from "react";
 import * as apiClient from "./apiClient";
 
 const App = () => {
-  return (
-    <main className="App">
-      <TaskList />
-      <AddTask />
-    </main>
-  );
-};
+  const [tasks, setTasks] = React.useState([]);
 
-const TaskList = () => {
-  const [taskList, setTaskList] = React.useState([]);
+  const loadTasks = async () => setTasks(await apiClient.getTasks());
+
   React.useEffect(() => {
-    const loadTasks = async () => setTaskList(await apiClient.getTasks());
     loadTasks();
   }, []);
 
   return (
-    <ul>
-      {taskList.map((task) => (
-        <li key={task.id}>{task.name}</li>
-      ))}
-    </ul>
+    <main className="App">
+      <TaskList tasks={tasks} />
+      <AddTask loadTasks={loadTasks} />
+    </main>
   );
 };
 
-const AddTask = () => {
+const TaskList = ({ tasks }) => (
+  <ul>
+    {tasks.map(({ id, name }) => (
+      <li key={id}>{name}</li>
+    ))}
+  </ul>
+);
+
+const AddTask = ({ loadTasks }) => {
   const [task, setTask] = React.useState("");
 
-  const onSubmit = (e) => {
+  const canAdd = task !== "";
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    apiClient.addTask(task);
-    setTask("");
+    if (canAdd) {
+      await apiClient.addTask(task);
+      loadTasks();
+      setTask("");
+    }
   };
 
   return (
     <form onSubmit={onSubmit}>
       <label>
-        Add task:{" "}
+        New task:{" "}
         <input onChange={(e) => setTask(e.currentTarget.value)} value={task} />
       </label>
-      <button>Add</button>
+      <button disabled={!canAdd}>Add</button>
     </form>
   );
 };
