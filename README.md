@@ -72,6 +72,12 @@ Visit <http://localhost:3000>.
 1. `npm run stop:db` to stop and destroy the PostgreSQL Docker container. Don't
    worry, your data is safe.
 
+## Need to Start a `psql` Session?
+
+```sh
+npm run psql
+```
+
 ## Want More Details?
 
 -  [Read about the Express server](server/README.md).
