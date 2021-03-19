@@ -1,13 +1,13 @@
 import express from "express";
 
+import * as db from "./db.mjs";
+
 const app = express();
 const port = 4000;
 
-app.get("/tasks", (req, res) => {
-  res.json([
-    { id: 1, name: "End white supremacy" },
-    { id: 2, name: "Enact living wage" },
-  ]);
+app.get("/tasks", async (req, res) => {
+  const tasks = await db.getTasks();
+  res.json(tasks);
 });
 
 app.listen(port, () => {
