@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "_delete:db": "rimraf .data/db",
     "_init:db": "docker-compose exec -u postgres db /var/tmp/fixture/load-data.sh",
-    "init:db": "run-s start:db _init:db",
+    "delete:db": "run-s stop:db _delete:db",
+    "init:db": "run-s delete:db start:db _init:db",
     "psql": "docker-compose exec -u postgres db /bin/ash -c 'psql ${POSTGRES_DB}'",
     "start": "run-p start:db start:server start:app",
     "start:app": "cd app && npm start",
@@ -24,6 +26,7 @@
   },
   "homepage": "https://github.com/gsong/express-react-project-example#readme",
   "dependencies": {
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
   }
 }
