@@ -10,6 +10,7 @@
     "init:db": "run-s delete:db start:db _init:db",
     "psql": "docker-compose exec -u postgres db /bin/ash -c 'psql ${POSTGRES_DB}'",
     "start": "run-p start:db start:server start:app",
+    "postinstall": "(cd app && npm install); (cd server && npm install)",
     "start:app": "cd app && npm start",
     "start:db": "docker-compose up -d",
     "start:server": "cd server && npm start",
