@@ -1,9 +1,12 @@
 # Example Project With PostgreSQL, Express, and React
 
-End-to-end React app backed by an Express API server, persisting
-data to PostgreSQL database.
+End-to-end React app backed by an Express API server, persisting data to
+PostgreSQL database. The project has a very simple interface that fetches data
+from a single table in the database, and allows you to add rows to that table.
 
 ## Prerequisites
+
+### Docker
 
 This project relies on Docker to run the PostgreSQL server. You must install
 Docker first before continuing.
@@ -13,7 +16,11 @@ Use one of these methods:
 -  Use [Homebrew][] on macOS: `brew install docker`
 -  [Follow the instructions on the Docker website][docker-www]
 
-## Set Up Development Environment
+### Node
+
+You'll need to install Node v14 or above. [`nvm`][nvm] is highly recommended.
+
+## Set Up the Development Environment
 
 ### Install NPM Packages
 
@@ -59,7 +66,7 @@ npm start
 
 Visit <http://localhost:3000>.
 
-## Stopping the Development Environment
+## Shut Down the Development Environment
 
 1. `Ctrl-C` to stop the Express and React development servers.
 1. `npm run stop:db` to stop and destroy the PostgreSQL Docker container. Don't
@@ -68,7 +75,9 @@ Visit <http://localhost:3000>.
 ## Want More Details?
 
 -  [Read about the Express server](server/README.md).
+-  [Read about the React app](app/README.md).
 
 [dh-postgres]: https://hub.docker.com/_/postgres
 [docker-www]: https://docs.docker.com/get-docker/
 [homebrew]: https://brew.sh
+[nvm]: https://github.com/nvm-sh/nvm
