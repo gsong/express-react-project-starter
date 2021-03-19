@@ -13,19 +13,18 @@ The primary Express server file. The code in this file:
 Notice we don't interact directly with the database in this file, we delegate
 those tasks to the `db.mjs` module.
 
-#### What Is `body-parser`?
+#### What Does `express.json()` Do?
 
-More specifically, what does `bodyParser.json()` do? It converts the incoming
-request payload (usually via `POST` or `PUT`) from a JSON string to a
-JavaScript object.
+Converts the incoming request payload (usually via `POST` or `PUT`) from a JSON
+string to a JavaScript value.
 
-[See the body-parser documentation for more details][body-parser].
+[See the express.json() documentation for more details][express.json].
 
 ### `db.mjs`
 
 Responsible for data access to the PostgreSQL database. The code in this file:
 
--  Sets up a [database client pool][pg-pool] 💦 connection.
+-  Sets up a database client connection.
 -  Provides functions that interact with the database.
 
 #### What Is This `dotenv` Business?
@@ -48,10 +47,9 @@ using it.
 In order for Node to recognize that we're using ESM, we suffix our modules with
 `.mjs` instead of `.js`. [See the Node documentation for more info][esm].
 
-[body-parser]: https://github.com/expressjs/body-parser#bodyparserjsonoptions
 [common-js]: https://nodejs.org/api/modules.html
 [dotenv]: https://github.com/motdotla/dotenv
 [env]: ../README.md#set-up-postgres-user-password-and-database-name
 [esm]: https://nodejs.org/api/esm.html
-[pg-pool]: https://node-postgres.com/features/pooling
+[express.json]: http://expressjs.com/en/api.html#express.json
 [process.env]: https://nodejs.org/dist/latest-v14.x/docs/api/process.html#process_process_env
