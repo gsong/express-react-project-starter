@@ -1,4 +1,3 @@
-import bodyParser from "body-parser";
 import express from "express";
 
 import * as db from "./db.mjs";
@@ -8,7 +7,7 @@ const port = 4000;
 
 app.get("/tasks", async (req, res) => res.json(await db.getTasks()));
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.post("/tasks", async (req, res) => {
   const { name } = req.body;
   res.json(await db.addTask(name));
