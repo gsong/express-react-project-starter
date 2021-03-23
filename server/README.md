@@ -13,6 +13,12 @@ The primary Express server file. The code in this file:
 Notice we don't interact directly with the database in this file, we delegate
 those tasks to the `db.mjs` module.
 
+#### What Does `response.json()` Do?
+
+Converts the JavaScript value to JSON and sends it as a response.
+
+[See the res.json() documentation for more details][res.json].
+
 #### What Does `express.json()` Do?
 
 Converts the incoming request payload (usually via `POST` or `PUT`) from a JSON
@@ -53,3 +59,4 @@ In order for Node to recognize that we're using ESM, we suffix our modules with
 [esm]: https://nodejs.org/api/esm.html
 [express.json]: http://expressjs.com/en/api.html#express.json
 [process.env]: https://nodejs.org/dist/latest-v14.x/docs/api/process.html#process_process_env
+[res.json]: http://expressjs.com/en/api.html#res.json

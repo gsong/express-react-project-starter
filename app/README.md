@@ -19,10 +19,14 @@ server.
 We use the [browser built-in `fetch` function][fetch] to perform the HTTP
 communication.
 
+Notice that we always translate the reponse from JSON to JavaScript object
+[using the Body.json() method][response.json].
+
 ## Proxy the Express Server
 
 [See the Create React App documentation for an explanation of why we want to
 proxy our API server][cra-proxy].
 
-[fetch]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 [cra-proxy]: https://create-react-app.dev/docs/proxying-api-requests-in-development/
+[fetch]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+[response.json]: https://developer.mozilla.org/en-US/docs/Web/API/Body/json
