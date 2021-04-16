@@ -3,7 +3,9 @@ import express from "express";
 import * as db from "./db.mjs";
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
+
+app.get("/ping", (request, response) => response.json({ response: "pong" }));
 
 app.get("/tasks", async (request, response) => {
   const tasks = await db.getTasks();
