@@ -13,8 +13,8 @@ Docker first before continuing.
 
 Use one of these methods:
 
--  Use [Homebrew][] on macOS: `brew install docker`
--  [Follow the instructions on the Docker website][docker-www]
+- Use [Homebrew][] on macOS: `brew install docker`
+- [Follow the instructions on the Docker website][docker-www]
 
 ### Node
 
@@ -80,9 +80,9 @@ npm run psql
 
 ## Want More Details?
 
--  [Read about the application stack](docs/application-stack.md).
--  [Read about the Express server](server/README.md).
--  [Read about the React app](app/README.md).
+- [Read about the application stack](docs/application-stack.md).
+- [Read about the Express server](server/README.md).
+- [Read about the React app](app/README.md).
 
 [dh-postgres]: https://hub.docker.com/_/postgres
 [docker-www]: https://docs.docker.com/get-docker/

@@ -6,9 +6,9 @@
 
 The primary Express server file. The code in this file:
 
--  Configures and runs the Express server
--  Sets up routes to handle HTTP requests
--  Processes incoming request and sends back a response
+- Configures and runs the Express server
+- Sets up routes to handle HTTP requests
+- Processes incoming request and sends back a response
 
 Notice we don't interact directly with the database in this file, we delegate
 those tasks to the `db.mjs` module.
@@ -30,8 +30,8 @@ string to a JavaScript value.
 
 Responsible for data access to the PostgreSQL database. The code in this file:
 
--  Sets up a database client connection.
--  Provides functions that interact with the database.
+- Sets up a database client connection.
+- Provides functions that interact with the database.
 
 #### What Is This `dotenv` Business?
 
