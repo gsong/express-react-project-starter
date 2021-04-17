@@ -13,6 +13,7 @@ RUN npm install -g npm@latest
 RUN npm install
 
 FROM node:lts-alpine as production
+ENV SERVE_REACT=true
 WORKDIR /app
 COPY --from=react /app/build .
 WORKDIR /server

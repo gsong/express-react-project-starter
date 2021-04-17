@@ -5,7 +5,12 @@ import * as db from "./db.mjs";
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.get("/ping", (request, response) => response.json({ response: "pong" }));
+process.env?.SERVE_REACT?.toLowerCase() === "true" &&
+  app.use(express.static("/app"));
+
+app.get("/api/ping", (request, response) =>
+  response.json({ response: "pong" })
+);
 
 app.get("/tasks", async (request, response) => {
   const tasks = await db.getTasks();
