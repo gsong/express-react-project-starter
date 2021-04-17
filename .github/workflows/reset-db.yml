@@ -1,0 +1,26 @@
+name: Periodically reset Heroku DB
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+jobs:
+  reset-heroku-db:
+    runs-on: ubuntu-latest
+    container:
+      image: gsong/tt-heroku-pg
+      env:
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Reset the DB
+        env:
+          SHOULD_RESET_HEROKU_DB: ${{ secrets.SHOULD_RESET_HEROKU_DB }}
+        if: env.SHOULD_RESET_HEROKU_DB
+        run: |
+          heroku maintenance:on -a ${HEROKU_APP_NAME}
+          heroku pg:reset -a ${HEROKU_APP_NAME} --confirm ${HEROKU_APP_NAME}
+          heroku pg:psql -a ${HEROKU_APP_NAME} < ./pg/seed.pgsql
+          heroku maintenance:off -a ${HEROKU_APP_NAME}
