@@ -4,6 +4,8 @@ End-to-end React app backed by an Express API server, persisting data to
 PostgreSQL database. The project has a very simple interface that fetches data
 from a single table in the database, and allows you to add rows to that table.
 
+[See the app in action][live].
+
 ## Prerequisites
 
 ### Docker
@@ -13,8 +15,8 @@ Docker first before continuing.
 
 Use one of these methods:
 
-- Use [Homebrew][] on macOS: `brew install docker`
-- [Follow the instructions on the Docker website][docker-www]
+-  Use [Homebrew][] on macOS: `brew install docker`
+-  [Follow the instructions on the Docker website][docker-www]
 
 ### Node
 
@@ -80,11 +82,16 @@ npm run psql
 
 ## Want More Details?
 
-- [Read about the application stack](docs/application-stack.md).
-- [Read about the Express server](server/README.md).
-- [Read about the React app](app/README.md).
+-  [Read about the application stack](docs/application-stack.md).
+-  [Read about the Express server](server/README.md).
+-  [Read about the React app](app/README.md).
+
+## Deployment
+
+[Read about setting up and deploying to Heroku](docs/deployment.md).
 
 [dh-postgres]: https://hub.docker.com/_/postgres
 [docker-www]: https://docs.docker.com/get-docker/
 [homebrew]: https://brew.sh
+[live]: https://tt-express-react-example.herokuapp.com
 [nvm]: https://github.com/nvm-sh/nvm
