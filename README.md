@@ -6,6 +6,9 @@ from a single table in the database, and allows you to add rows to that table.
 
 [See the app in action][live].
 
+[![Deploy to Heroku][deploy-badge]][deploy-workflow]
+[![Reset Heroku DB][reset-badge]][reset-workflow]
+
 ## Prerequisites
 
 ### Docker
@@ -90,8 +93,12 @@ npm run psql
 
 [Read about setting up and deploying to Heroku](docs/deployment.md).
 
+[deploy-badge]: https://github.com/gsong/express-react-project-example/actions/workflows/deploy.yaml/badge.svg
+[deploy-workflow]: https://github.com/gsong/express-react-project-example/actions/workflows/deploy.yaml
 [dh-postgres]: https://hub.docker.com/_/postgres
 [docker-www]: https://docs.docker.com/get-docker/
 [homebrew]: https://brew.sh
 [live]: https://tt-express-react-example.herokuapp.com
 [nvm]: https://github.com/nvm-sh/nvm
+[reset-badge]: https://github.com/gsong/express-react-project-example/actions/workflows/reset-db.yml/badge.svg
+[reset-workflow]: https://github.com/gsong/express-react-project-example/actions/workflows/reset-db.yml
