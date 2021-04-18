@@ -66,9 +66,11 @@ ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_
 --
 
 COPY public.tasks (id, name) FROM stdin;
-1	End white supremacy
-2	Enact living wage
-3	Provide universal health care
+1	🙏 Be nice when you add test entries
+2	⏲ Added entries will be reset every Sunday
+3	End white supremacy
+4	Advocate for living wage
+5	Provide universal health care
 \.
 
 
