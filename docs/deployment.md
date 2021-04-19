@@ -5,7 +5,12 @@ This project is set up to deploy to [Heroku][], using the [Container stack][].
 ## Setup
 
 1. [Sign up for a Heroku account][sign up] if you don't already have one.
-1. [Install the Heroku CLI][cli].
+1. [Install the Heroku CLI][cli]. On macOS:
+
+   ```sh
+   brew tap heroku/brew && brew install heroku
+   ```
+
 1. Set up an app:
 
    ```sh
@@ -31,8 +36,8 @@ npm run heroku:deploy
 
 ### Automatic Deployment
 
-This repo also contains a [GitHub Actions][] deployment workflow. Any new commits
-to the `main` branch will trigger the workflow.
+This repo also contains a [GitHub Actions][] deployment workflow. Any new
+commits to the `main` branch will trigger the workflow.
 
 ⚠️ **IMPORTANT**: You still need to run the [Heroku setup step](#setup) before
 you can automatically deploy.
