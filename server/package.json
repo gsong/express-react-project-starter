@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "eslint": "eslint . --ext js,mjs",
     "serve": "node server.mjs",
     "start": "bin/start-server.sh"
   },
@@ -16,6 +17,12 @@
     "pg-promise": "^10.9.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "@babel/eslint-parser": "^7.13.14",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1"
   }
 }

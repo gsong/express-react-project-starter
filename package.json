@@ -11,6 +11,7 @@
     "db:init": "run-s db:delete db:start _db:init",
     "db:start": "docker-compose up -d",
     "db:stop": "docker-compose down",
+    "eslint": "(cd app && npm run eslint); (cd server && npm run eslint)",
     "heroku:dashboard": "open https://dashboard.heroku.com/apps/$(heroku apps | sed -n '2 p')",
     "heroku:deploy": "git push -f heroku HEAD:main",
     "heroku:psql": "docker-compose run --rm -e DATABASE_URL=$(heroku config:get DATABASE_URL) db /bin/ash -c 'psql ${DATABASE_URL}'",
