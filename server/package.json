@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "node server.mjs",
-    "start": "nodemon server.mjs"
+    "start": "bin/start-server.sh"
   },
   "author": "",
   "license": "ISC",
