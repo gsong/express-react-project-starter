@@ -51,8 +51,8 @@ you can automatically deploy.
    Copy the "Token" value.
 
 1. Add the following [GitHub repository secrets][repo-secrets]:
-   -  `HEROKU_API_KEY`: the Heorku authorization token
-   -  `HEROKU_APP_NAME`: the Heroku app name (`heroku apps` if you forgot it)
+   - `HEROKU_API_KEY`: the Heorku authorization token
+   - `HEROKU_APP_NAME`: the Heroku app name (`heroku apps` if you forgot it)
 
 From now on, whenever you push or merge into the `main` branch, GitHub will
 automatically deploy the branch to Heroku! 🙌
@@ -72,8 +72,8 @@ automatically deploy the branch to Heroku! 🙌
 
 ## Additional Information
 
--  [Learn more about the Heroku CLI commands][cli-commands].
--  [Learn more about Heroku container deployment][container-deploy].
+- [Learn more about the Heroku CLI commands][cli-commands].
+- [Learn more about Heroku container deployment][container-deploy].
 
 [cli-commands]: https://devcenter.heroku.com/articles/heroku-cli-commands
 [cli]: https://devcenter.heroku.com/articles/heroku-cli

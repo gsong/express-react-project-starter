@@ -29,11 +29,11 @@ process.env?.SERVE_REACT?.toLowerCase() === "true" &&
       setHeaders: (res, path) =>
         ["application/json", "text/html"].includes(mime.lookup(path)) &&
         res.setHeader("Cache-Control", "public, max-age=0"),
-    })
+    }),
   );
 
 app.get("/api/ping", (request, response) =>
-  response.json({ response: "pong" })
+  response.json({ response: "pong" }),
 );
 
 app.listen(port, () => {

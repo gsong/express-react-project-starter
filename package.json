@@ -16,6 +16,7 @@
     "heroku:psql": "docker-compose run --rm -e DATABASE_URL=$(heroku config:get DATABASE_URL) db /bin/ash -c 'psql ${DATABASE_URL}'",
     "heroku:setup": "bin/setup-heroku.sh",
     "postinstall": "(cd app && npm install); (cd server && npm install)",
+    "prettier": "prettier --write .",
     "psql": "docker-compose exec -u postgres db /bin/ash -c 'psql ${POSTGRES_DB}'",
     "server:start": "cd server && npm start",
     "start": "run-p db:start server:start app:start"
