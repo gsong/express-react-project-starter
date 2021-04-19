@@ -57,7 +57,7 @@ with some data. You only need to do this the first time you set up your
 development environment.
 
 ```sh
-npm run init:db
+npm run db:init
 ```
 
 ℹ️ If you ever need to start over with the database, you can run this command
@@ -74,7 +74,7 @@ Visit <http://localhost:3000>.
 ## Shut Down the Development Environment
 
 1. `Ctrl-C` to stop the Express and React development servers.
-1. `npm run stop:db` to stop and destroy the PostgreSQL Docker container. Don't
+1. `npm run db:stop` to stop and destroy the PostgreSQL Docker container. Don't
    worry, your data is safe.
 
 ## Need to Start a `psql` Session?
