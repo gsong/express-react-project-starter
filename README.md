@@ -18,7 +18,7 @@ Docker first before continuing.
 
 Use one of these methods:
 
-- Use [Homebrew][] on macOS: `brew install docker`
+- Use [Homebrew][] on macOS: `brew install --cask docker`
 - [Follow the instructions on the Docker website][docker-www]
 
 ### Node
