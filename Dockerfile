@@ -3,7 +3,7 @@ ARG NODE_ENV=production
 RUN npm install -g npm@latest
 WORKDIR /app
 COPY ./app .
-RUN (npm_config_loglevel=error npm install)
+RUN npm install --loglevel error
 RUN npm run build
 
 FROM node:lts-alpine as deps
