@@ -1,4 +1,4 @@
-FROM node:lts-alpine as react
+FROM node:lts-alpine as app
 ARG NODE_ENV=production
 RUN npm install -g npm@latest
 WORKDIR /app
@@ -6,7 +6,7 @@ COPY ./app .
 RUN npm install --loglevel error
 RUN npm run build
 
-FROM node:lts-alpine as deps
+FROM node:lts-alpine as server
 ARG NODE_ENV=production
 RUN npm install -g npm@latest
 WORKDIR /server
@@ -17,8 +17,7 @@ FROM node:lts-alpine as production
 ARG NODE_ENV=production
 ENV SERVE_REACT=true
 WORKDIR /app
-COPY --from=react /app/build .
+COPY --from=app /app/build .
 WORKDIR /server
-COPY ./server .
-COPY --from=deps /server/node_modules ./node_modules
+COPY --from=server /server .
 CMD npm run serve
