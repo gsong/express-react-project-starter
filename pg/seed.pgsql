@@ -78,7 +78,7 @@ COPY public.tasks (id, name) FROM stdin;
 -- Name: tasks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tasks_id_seq', 3, true);
+SELECT pg_catalog.setval('public.tasks_id_seq', 5, true);
 
 
 --
