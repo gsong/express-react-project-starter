@@ -2,6 +2,14 @@
 
 This project is set up to deploy to [Heroku][], using the [Container stack][].
 
+## Prerequisites
+
+The [prerequisites to deploy to Heorku][prerequisites] is the same as the local
+development environment.
+
+You'll also need to [setup up the `.env` file][dotenv] in your project
+directory.
+
 ## Setup
 
 1. [Sign up for a Heroku account][sign up] if you don't already have one.
@@ -79,7 +87,9 @@ automatically deploy the branch to Heroku! 🙌
 [cli]: https://devcenter.heroku.com/articles/heroku-cli
 [container stack]: https://devcenter.heroku.com/articles/stack
 [container-deploy]: https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
+[dotenv]: ../README.md##set-up-postgres-user-password-and-database-name
 [github actions]: https://docs.github.com/en/actions
 [heroku]: https://www.heroku.com
+[prerequisites]: ../README.md#prerequisites
 [repo-secrets]: https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository
 [sign up]: https://signup.heroku.com

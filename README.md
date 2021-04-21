@@ -21,6 +21,9 @@ Use one of these methods:
 - Use [Homebrew][] on macOS: `brew install --cask docker`
 - [Follow the instructions on the Docker website][docker-www]
 
+Once you've installed Docker Desktop, you'll need to launch the app. On macOS,
+it's located in `/Applications/Docker`.
+
 ### Node
 
 You'll need to install Node v14 or above. [`nvm`][nvm] is highly recommended.
