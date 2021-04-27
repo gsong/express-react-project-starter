@@ -4,7 +4,7 @@ This project is set up to deploy to [Heroku][], using the [Container stack][].
 
 ## Prerequisites
 
-The [prerequisites to deploy to Heorku][prerequisites] is the same as the local
+The [prerequisites to deploy to Heroku][prerequisites] is the same as the local
 development environment.
 
 You'll also need to [setup up the `.env` file][dotenv] in your project
