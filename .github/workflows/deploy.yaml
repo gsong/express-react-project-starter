@@ -1,6 +1,7 @@
 name: Deploy to Heroku
 
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -20,4 +21,4 @@ jobs:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
         run: >-
           git push -f https://heroku:${HEROKU_API_TOKEN}@git.heroku.com/${HEROKU_APP_NAME}.git
-          origin/main:main
+          ${GITHUB_SHA}:main
