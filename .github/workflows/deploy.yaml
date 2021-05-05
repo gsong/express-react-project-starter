@@ -15,18 +15,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: envvars
-        run: |
+      - name: Deploy to Heroku
+        env:
+          HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+        run: >-
           if [ ${GITHUB_EVENT_NAME} == "pull_request" ]; then
             GITHUB_SHA=${{ github.event.pull_request.head.sha }}
           fi
-          echo ${{ github.event.pull_request.head.sha }}
-          echo ${GITHUB_SHA}
 
-      # - name: Deploy to Heroku
-      #   env:
-      #     HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_KEY }}
-      #     HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      #   run: >-
-      #     git push -f https://heroku:${HEROKU_API_TOKEN}@git.heroku.com/${HEROKU_APP_NAME}.git
-      #     ${GITHUB_SHA}:main
+          git push -f https://heroku:${HEROKU_API_TOKEN}@git.heroku.com/${HEROKU_APP_NAME}.git
+          ${GITHUB_SHA}:main
