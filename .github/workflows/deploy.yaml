@@ -17,8 +17,11 @@ jobs:
 
       - name: envvars
         run: |
-          echo ${GITHUB_HEAD_REF}
+          if [ ${GITHUB_EVENT_NAME} == "pull_request" ]; then
+            GITHUB_SHA=${{ github.event.pull_request.head.sha }}
+          fi
           echo ${{ github.event.pull_request.head.sha }}
+          echo ${GITHUB_SHA}
 
       # - name: Deploy to Heroku
       #   env:
