@@ -59,7 +59,7 @@ you can automatically deploy.
    Copy the "Token" value.
 
 1. Add the following [GitHub repository secrets][repo-secrets]:
-   - `HEROKU_API_KEY`: the Heorku authorization token
+   - `HEROKU_API_KEY`: the Heroku authorization token
    - `HEROKU_APP_NAME`: the Heroku app name (`heroku apps` if you forgot it)
 
 From now on, whenever you push or merge into the `main` branch, GitHub will
@@ -77,6 +77,26 @@ automatically deploy the branch to Heroku! 🙌
 | Access the Heroku PostgreSQL instance | `npm run heroku:psql`            |
 | See the database connection string    | `heroku config:get DATABASE_URL` |
 | Access the database dashboard         | `heroku addons:open DATABASE`    |
+
+## Connecting Your Heroku App to your PG_Database
+
+You might notice that your app on heroku still connects to the example database from this project template. This is because the Heroku configuration variable "DATABASE_URL" has not been changed yet. 
+
+**To set this up:**
+
+1. Check that the `seed.pgsql` file in your `/pg/` directory is correct. If it isn't, run the `pg_dump` command to create your seed file and replace the original with it. You can follow instructions for pg_dump [here](https://www.a2hosting.com/kb/developer-corner/postgresql/import-and-export-a-postgresql-database#Create-a-new-PostgreSQL-database-and-assign-a-user)
+
+   ⚠️ Make sure it's exported as `.pgsql` and not `.psql`. You can also simply rename the file.
+  
+2. From your project root directory, run:
+
+   ```heroku pg:reset```
+   
+3. Next: 
+
+   ```docker-compose run --rm -e DATABASE_URL=$(heroku config:get DATABASE_URL) db /bin/ash -c 'psql ${DATABASE_URL} < /var/tmp/pg/seed.pgsql'```
+
+4. And you're done! Your heroku app should now be connected to the right database.
 
 ## Additional Information
 
