@@ -59,11 +59,66 @@ you can automatically deploy.
    Copy the "Token" value.
 
 1. Add the following [GitHub repository secrets][repo-secrets]:
-   - `HEROKU_API_KEY`: the Heorku authorization token
-   - `HEROKU_APP_NAME`: the Heroku app name (`heroku apps` if you forgot it)
+   -  `HEROKU_API_KEY`: the Heorku authorization token
+   -  `HEROKU_APP_NAME`: the Heroku app name (`heroku apps` if you forgot it)
+   -  `HEROKU_EMAIL`: email that you use with Heroku
 
 From now on, whenever you push or merge into the `main` branch, GitHub will
 automatically deploy the branch to Heroku! 🙌
+
+## Custom Environment Variables
+
+### Node/Express
+
+Add via [Heroku config vars][].
+
+### React
+
+For any `REACT_APP_*` environment variables, you need to add them in three places:
+
+#### GitHub Secrets
+
+Add the appropriate keys and values via [GitHub secrets][].
+
+For this example, we'll use `REACT_APP_TITLE`.
+
+#### .github/workflows/deploy.yaml
+
+For the [`akhileshns/heroku-deploy`][github-deploy-heroku] step:
+
+1. Set up the action environment by adding to the `env:` section:
+
+   ```yaml
+   env:
+     REACT_APP_TITLE: ${{ secrets.REACT_APP_TITLE }}
+   ```
+
+1. Add the same key to the `docker_build_args` option of the `with:` section,
+   it should look something like this:
+
+   ```yaml
+   with:
+     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+     heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+     heroku_email: ${{secrets.HEROKU_EMAIL}}
+     usedocker: true
+     docker_build_args: |
+       REACT_APP_TITLE
+   ```
+
+#### Dockerfile
+
+You'll also need to add the same variable key as a Docker build arg for the app
+stage.
+
+It should look something like this:
+
+```
+FROM node:lts-alpine as app
+ARG NODE_ENV=production
+ARG REACT_APP_TITLE
+…
+```
 
 ## Tips
 
@@ -80,8 +135,8 @@ automatically deploy the branch to Heroku! 🙌
 
 ## Additional Information
 
-- [Learn more about the Heroku CLI commands][cli-commands].
-- [Learn more about Heroku container deployment][container-deploy].
+-  [Learn more about the Heroku CLI commands][cli-commands].
+-  [Learn more about Heroku container deployment][container-deploy].
 
 [cli-commands]: https://devcenter.heroku.com/articles/heroku-cli-commands
 [cli]: https://devcenter.heroku.com/articles/heroku-cli
@@ -89,6 +144,9 @@ automatically deploy the branch to Heroku! 🙌
 [container-deploy]: https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
 [dotenv]: ../README.md##set-up-postgres-user-password-and-database-name
 [github actions]: https://docs.github.com/en/actions
+[github secrets]: https://docs.github.com/en/actions/reference/encrypted-secrets
+[github-deploy-heroku]: https://github.com/marketplace/actions/deploy-to-heroku#deploy-with-docker
+[heroku config vars]: https://devcenter.heroku.com/articles/config-vars
 [heroku]: https://www.heroku.com
 [prerequisites]: ../README.md#prerequisites
 [repo-secrets]: https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository
