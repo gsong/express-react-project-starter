@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "_db:delete": "rimraf .data/db",
-    "_db:init": "docker-compose exec -u postgres db /var/tmp/pg/load-data.sh",
+    "_db:init": "docker-compose exec -u postgres db ./var/tmp/pg/load-data.sh",
     "app:start": "cd app && npm start",
     "db:delete": "run-s db:stop _db:delete",
     "db:init": "run-s db:delete db:start _db:init",
