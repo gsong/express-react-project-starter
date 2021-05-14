@@ -1,8 +1,24 @@
 import * as React from "react";
 
+import { Router, Link } from "@reach/router";
+
 import * as apiClient from "./apiClient";
 
 const App = () => {
+  return (
+    <main>
+      <nav>
+        <Link to="/">Home</Link> | <Link to="dashboard">Dashboard</Link>
+      </nav>
+      <Router>
+        <Home path="/" />
+        <Dashboard path="/dashboard" />
+      </Router>
+    </main>
+  );
+};
+
+const Home = () => {
   const [tasks, setTasks] = React.useState([]);
 
   const loadTasks = async () => setTasks(await apiClient.getTasks());
@@ -12,13 +28,19 @@ const App = () => {
   }, []);
 
   return (
-    <main className="App">
+    <>
       <h1>{process.env.REACT_APP_TITLE}</h1>
       <TaskList tasks={tasks} />
       <AddTask loadTasks={loadTasks} />
-    </main>
+    </>
   );
 };
+
+const Dashboard = () => (
+  <>
+    <h1>Dashboard</h1>
+  </>
+);
 
 const TaskList = ({ tasks }) => (
   <ul>
