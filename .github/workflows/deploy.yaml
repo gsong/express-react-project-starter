@@ -17,8 +17,15 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          usedocker: true
-          docker_build_args: |
-            REACT_APP_TITLE
-        env:
-          REACT_APP_TITLE: ${{ secrets.REACT_APP_TITLE }}
+          justlogin: true
+      - name: "Login to heroku registry"
+        run: heroku container:login
+
+      - name: "Build and push to heroku registry"
+        run: >-
+          heroku container:push web
+          --app ${{secrets.HEROKU_APP_NAME}}
+          --arg REACT_APP_TITLE="${{secrets.REACT_APP_TITLE}}"
+
+      - name: "Releases the container"
+        run: heroku container:release web --app ${{secrets.HEROKU_APP_NAME}}
