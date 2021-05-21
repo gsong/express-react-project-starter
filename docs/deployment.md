@@ -10,7 +10,7 @@ development environment.
 You'll also need to [setup up the `.env` file][dotenv] in your project
 directory.
 
-## Setup
+## Heroku Setup
 
 1. [Sign up for a Heroku account][sign up] if you don't already have one.
 1. [Install the Heroku CLI][cli]. On macOS:
@@ -31,24 +31,13 @@ directory.
    At the end of the process (which will take about 5 minutes), you'll be shown
    the details of your app, including the URL of where you can access the app.
 
-   You should see the app running in your browser. If not, just visit the URL.
-
-## Deployment
-
-As you make code changes to the server or the app, you can always deploy your
-current working branch to see it running at Heroku:
-
-```sh
-npm run heroku:deploy
-```
-
 ### Automatic Deployment
 
 This repo also contains a [GitHub Actions][] deployment workflow. Any new
 commits to the `main` branch will trigger the workflow.
 
-⚠️ **IMPORTANT**: You still need to run the [Heroku setup step](#setup) before
-you can automatically deploy.
+⚠️ **IMPORTANT**: You still need to run the [Heroku setup step](#heroku-setup)
+before you can automatically deploy.
 
 1. Create a Heroku API token:
 
@@ -58,13 +47,13 @@ you can automatically deploy.
 
    Copy the "Token" value.
 
-1. Add the following [GitHub repository secrets][repo-secrets]:
+1. Add the following [GitHub repository secrets][github secrets]:
    -  `HEROKU_API_KEY`: the Heorku authorization token
    -  `HEROKU_APP_NAME`: the Heroku app name (`heroku apps` if you forgot it)
    -  `HEROKU_EMAIL`: email that you use with Heroku
 
-From now on, whenever you push or merge into the `main` branch, GitHub will
-automatically deploy the branch to Heroku! 🙌
+From now on, whenever you push or merge into the `main` branch, or create a
+pull request, GitHub will automatically deploy the branch to Heroku! 🙌
 
 ## Custom Environment Variables
 
@@ -90,7 +79,7 @@ For the [`akhileshns/heroku-deploy`][github-deploy-heroku] step:
 
    ```yaml
    env:
-     REACT_APP_TITLE: ${{ secrets.REACT_APP_TITLE }}
+      REACT_APP_TITLE: ${{ secrets.REACT_APP_TITLE }}
    ```
 
 1. Add the same key to the `docker_build_args` option of the `with:` section,
@@ -98,12 +87,12 @@ For the [`akhileshns/heroku-deploy`][github-deploy-heroku] step:
 
    ```yaml
    with:
-     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-     heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-     heroku_email: ${{secrets.HEROKU_EMAIL}}
-     usedocker: true
-     docker_build_args: |
-       REACT_APP_TITLE
+      heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+      heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+      heroku_email: ${{secrets.HEROKU_EMAIL}}
+      usedocker: true
+      docker_build_args: |
+         REACT_APP_TITLE
    ```
 
 #### Dockerfile
@@ -141,13 +130,12 @@ ARG REACT_APP_TITLE
 [cli-commands]: https://devcenter.heroku.com/articles/heroku-cli-commands
 [cli]: https://devcenter.heroku.com/articles/heroku-cli
 [container stack]: https://devcenter.heroku.com/articles/stack
-[container-deploy]: https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
+[container-deploy]: https://devcenter.heroku.com/articles/container-registry-and-runtime
 [dotenv]: ../README.md##set-up-postgres-user-password-and-database-name
 [github actions]: https://docs.github.com/en/actions
-[github secrets]: https://docs.github.com/en/actions/reference/encrypted-secrets
+[github secrets]: https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository
 [github-deploy-heroku]: https://github.com/marketplace/actions/deploy-to-heroku#deploy-with-docker
 [heroku config vars]: https://devcenter.heroku.com/articles/config-vars
 [heroku]: https://www.heroku.com
 [prerequisites]: ../README.md#prerequisites
-[repo-secrets]: https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository
 [sign up]: https://signup.heroku.com
