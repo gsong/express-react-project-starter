@@ -30,6 +30,7 @@ const Home = () => {
   return (
     <>
       <h1>{process.env.REACT_APP_TITLE}</h1>
+      <h2>{process.env.REACT_APP_SUBTITLE}</h2>
       <TaskList tasks={tasks} />
       <AddTask loadTasks={loadTasks} />
     </>

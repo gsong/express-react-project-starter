@@ -1,6 +1,7 @@
 FROM node:lts-alpine as app
 ARG NODE_ENV=production
 ARG REACT_APP_TITLE
+ARG REACT_APP_SUBTITLE
 RUN npm install -g npm@latest
 WORKDIR /app
 COPY ./app .

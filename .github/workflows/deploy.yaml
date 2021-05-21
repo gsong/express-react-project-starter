@@ -12,12 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           justlogin: true
+
       - name: "Login to heroku registry"
         run: heroku container:login
 
@@ -25,7 +27,7 @@ jobs:
         run: >-
           heroku container:push web
           --app ${{secrets.HEROKU_APP_NAME}}
-          --arg REACT_APP_TITLE="${{secrets.REACT_APP_TITLE}}"
+          --arg REACT_APP_TITLE="${{secrets.REACT_APP_TITLE}}",REACT_APP_SUBTITLE="${{secrets.REACT_APP_SUBTITLE}}"
 
       - name: "Releases the container"
         run: heroku container:release web --app ${{secrets.HEROKU_APP_NAME}}

@@ -69,31 +69,16 @@ For any `REACT_APP_*` environment variables, you need to add them in three place
 
 Add the appropriate keys and values via [GitHub secrets][].
 
-For this example, we'll use `REACT_APP_TITLE`.
+For this example, we'll use `REACT_APP_TITLE` and `REACT_APP_SUBTITLE`.
 
 #### .github/workflows/deploy.yaml
 
-For the [`akhileshns/heroku-deploy`][github-deploy-heroku] step:
+For the "Build and push to heroku registry" step, add all the variables to the
+`--arg` line, with each key value pair separated by a comma without spaces:
 
-1. Set up the action environment by adding to the `env:` section:
-
-   ```yaml
-   env:
-      REACT_APP_TITLE: ${{ secrets.REACT_APP_TITLE }}
-   ```
-
-1. Add the same key to the `docker_build_args` option of the `with:` section,
-   it should look something like this:
-
-   ```yaml
-   with:
-      heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-      heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-      heroku_email: ${{secrets.HEROKU_EMAIL}}
-      usedocker: true
-      docker_build_args: |
-         REACT_APP_TITLE
-   ```
+```yaml
+--arg REACT_APP_TITLE="${{secrets.REACT_APP_TITLE}}",REACT_APP_SUBTITLE="${{secrets.REACT_APP_SUBTITLE}}"
+```
 
 #### Dockerfile
 
@@ -106,6 +91,7 @@ It should look something like this:
 FROM node:lts-alpine as app
 ARG NODE_ENV=production
 ARG REACT_APP_TITLE
+ARG REACT_APP_SUBTITLE
 …
 ```
 
