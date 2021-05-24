@@ -22,5 +22,5 @@ jobs:
         run: |
           heroku maintenance:on -a ${HEROKU_APP_NAME}
           heroku pg:reset -a ${HEROKU_APP_NAME} --confirm ${HEROKU_APP_NAME}
-          heroku pg:psql -a ${HEROKU_APP_NAME} < ./pg/seed.pgsql
+          heroku pg:psql -a ${HEROKU_APP_NAME} < ./pg/seed.psql
           heroku maintenance:off -a ${HEROKU_APP_NAME}

@@ -5,4 +5,4 @@ do
   sleep 10
 done
 
-psql ${POSTGRES_DB} < /var/tmp/pg/seed.pgsql
+psql ${POSTGRES_DB} < /var/tmp/pg/seed.psql
