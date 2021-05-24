@@ -1,0 +1,65 @@
+{
+  "contributors": [
+    {
+      "login": "m3ia",
+      "name": "Meia",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38749469?v=4",
+      "profile": "https://github.com/m3ia",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "carbonsoda",
+      "name": "Avery",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22334165?v=4",
+      "profile": "https://github.com/carbonsoda",
+      "contributions": [
+        "infra"
+      ]
+    },
+    {
+      "login": "sunnybrie",
+      "name": "Brie Klassen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76143251?v=4",
+      "profile": "https://github.com/sunnybrie",
+      "contributions": [
+        "doc",
+        "ideas",
+        "mentoring",
+        "bug"
+      ]
+    },
+    {
+      "login": "gsong",
+      "name": "George Song",
+      "avatar_url": "https://avatars.githubusercontent.com/u/607420?v=4",
+      "profile": "https://github.com/gsong",
+      "contributions": [
+        "code",
+        "doc",
+        "infra",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "aedward8",
+      "name": "Abigail Edwards",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63216164?v=4",
+      "profile": "https://github.com/aedward8",
+      "contributions": [
+        "mentoring",
+        "ideas",
+        "bug"
+      ]
+    }
+  ],
+  "commit": true,
+  "commitConvention": "angular",
+  "contributorsSortAlphabetically": true,
+  "projectName": "express-react-project-example",
+  "projectOwner": "gsong",
+  "repoHost": "https://github.com",
+  "repoType": "github",
+  "skipCi": false
+}
