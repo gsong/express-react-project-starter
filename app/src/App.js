@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Router, Link } from "@reach/router";
+import { Routes, Route, Link } from "react-router-dom";
 
 import * as apiClient from "./apiClient";
 
@@ -10,10 +10,10 @@ const App = () => {
       <nav>
         <Link to="/">Home</Link> | <Link to="dashboard">Dashboard</Link>
       </nav>
-      <Router>
-        <Home path="/" />
-        <Dashboard path="/dashboard" />
-      </Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </main>
   );
 };
