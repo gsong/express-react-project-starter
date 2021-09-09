@@ -1,6 +1,8 @@
-export const getTasks = () => _get("/api/tasks");
+export const getUsers = async () => _get("/api/users");
 
-export const addTask = (name) => _post("/api/tasks", { name });
+export const addUser = async (user) => _post("/api/users", user);
+
+export const deleteUser = async (userId) => _delete(`/api/users/${userId}`);
 
 const _get = async (url) => (await fetch(url)).json();
 
@@ -17,3 +19,5 @@ const _post = async (url, body) => {
 
   return result;
 };
+
+const _delete = (url) => fetch(url, { method: "DELETE" });

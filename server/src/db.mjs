@@ -6,10 +6,16 @@ load_dotenv_if_exists();
 
 const db = initDb();
 
-export const getTasks = () => db.any("SELECT * FROM tasks");
+export const getUsers = async () => db.any("SELECT * FROM users");
 
-export const addTask = (name) =>
-  db.one("INSERT INTO tasks(name) VALUES($<name>) RETURNING *", { name });
+export const addUser = async (user) =>
+  await db.one(
+    "INSERT INTO users(username, email) VALUES(${username}, ${email}) RETURNING id, username, email",
+    user,
+  );
+
+export const deleteUser = async (userId) =>
+  await db.none("DELETE FROM users WHERE id = ${userId}", { userId });
 
 function initDb() {
   let connection;
