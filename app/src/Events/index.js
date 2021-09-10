@@ -2,7 +2,9 @@ import * as React from "react";
 
 import { format } from "date-fns";
 
-import * as apiClient from "./apiClient";
+import * as apiClient from "../apiClient";
+
+import styles from "./styles.module.scss";
 
 const Events = ({ selectedUser }) => {
   const {
@@ -21,50 +23,70 @@ const Events = ({ selectedUser }) => {
   return (
     <section>
       <h1>Events for {user?.username}</h1>
-      <DateFilter {...{ setDateFilter }} />
-      <CategoryFilter {...{ setCategoryFilter }} />
-      <label>
-        <input
-          type="checkbox"
-          defaultChecked={displayFavoritesOnly}
-          onChange={(e) => {
-            setDisplayFavoritesOnly(e.currentTarget.checked);
-          }}
-        />{" "}
-        Favorited events only
-      </label>
-      <ul>
-        {filteredEvents.map(({ id, name, date, category }) => (
-          <li key={id}>
-            <dl>
-              <dt>ID</dt>
-              <dd>{id}</dd>
-              <dt>Name</dt>
-              <dd>{name}</dd>
-              <dt>Date</dt>
-              <dd>{date.toDateString()}</dd>
-              <dt>Category</dt>
-              <dd>{category}</dd>
-            </dl>
-            {user?.favorites?.includes(id) ? (
-              <button
-                type="button"
-                onClick={() => unfavoriteEvent(selectedUser, id)}
-              >
-                Unfavorite
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={() => favoriteEvent(selectedUser, id)}
-              >
-                Favorite
-              </button>
-            )}
-            <button onClick={() => deleteEvent(id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+
+      <div className={styles.filters}>
+        <DateFilter {...{ setDateFilter }} />
+        <CategoryFilter {...{ setCategoryFilter }} />
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              defaultChecked={displayFavoritesOnly}
+              onChange={(e) => {
+                setDisplayFavoritesOnly(e.currentTarget.checked);
+              }}
+            />{" "}
+            Favorited events only
+          </label>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {filteredEvents.map(({ id, name, date, category }) => {
+            const isFavorite = user?.favorites?.includes(id);
+
+            return (
+              <tr key={id} className={isFavorite ? styles.favorite : null}>
+                <td>{id}</td>
+                <td>{name}</td>
+                <td>{date.toDateString()}</td>
+                <td>{category}</td>
+                <td>
+                  {isFavorite ? (
+                    <button
+                      type="button"
+                      onClick={() => unfavoriteEvent(selectedUser, id)}
+                    >
+                      Unfavorite
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => favoriteEvent(selectedUser, id)}
+                    >
+                      Favorite
+                    </button>
+                  )}
+                </td>
+                <td>
+                  <button onClick={() => deleteEvent(id)}>Delete</button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+
       <AddEvent {...{ addEvent }} />
     </section>
   );

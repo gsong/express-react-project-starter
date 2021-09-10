@@ -1,6 +1,8 @@
 import * as React from "react";
 
-import * as apiClient from "./apiClient";
+import * as apiClient from "../apiClient";
+
+import styles from "./styles.module.scss";
 
 const Users = ({ selectedUser, setSelectedUser }) => {
   const { users, addUser, deleteUser } = useUsers(
@@ -11,26 +13,41 @@ const Users = ({ selectedUser, setSelectedUser }) => {
   return (
     <section>
       <h1>Users</h1>
-      <ul>
-        {users.map(({ id, username, email }) => (
-          <li key={id}>
-            <dl>
-              <dt>ID</dt>
-              <dd>{id}</dd>
-              <dt>Username</dt>
-              <dd>{username}</dd>
-              <dt>Email</dt>
-              <dd>{email}</dd>
-            </dl>
-            <button onClick={() => deleteUser(id)}>Delete</button>
-            {selectedUser === id ? null : (
-              <button type="button" onClick={() => setSelectedUser(id)}>
-                Select user
-              </button>
-            )}
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map(({ id, username, email }) => {
+            const isSelected = selectedUser === id;
+
+            return (
+              <tr key={id} className={isSelected ? styles.selected : null}>
+                <td>{id}</td>
+                <td>
+                  <a href={`mailto: ${email}`}>{username}</a>
+                </td>
+                <td>{email}</td>
+                <td>
+                  <button onClick={() => deleteUser(id)}>Delete</button>
+                </td>
+                <td>
+                  {isSelected ? null : (
+                    <button type="button" onClick={() => setSelectedUser(id)}>
+                      Select user
+                    </button>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+
       <AddUser {...{ addUser }} />
     </section>
   );

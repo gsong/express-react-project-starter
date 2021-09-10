@@ -1,0 +1,13 @@
+.filters {
+  background-color: lemonchiffon;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+
+  > *:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+.favorite {
+  background-color: lightpink;
+}
