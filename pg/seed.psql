@@ -47,6 +47,16 @@ ALTER TABLE public.events ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
+-- Name: favorite_events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.favorite_events (
+    user_id integer NOT NULL,
+    event_id integer NOT NULL
+);
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -82,6 +92,15 @@ COPY public.events (id, name, date, category) FROM stdin;
 
 
 --
+-- Data for Name: favorite_events; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.favorite_events (user_id, event_id) FROM stdin;
+1	2
+\.
+
+
+--
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -103,6 +122,46 @@ SELECT pg_catalog.setval('public.events_id_seq', 2, true);
 --
 
 SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+
+
+--
+-- Name: events pk_events; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT pk_events PRIMARY KEY (id);
+
+
+--
+-- Name: favorite_events pk_favorite_events; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.favorite_events
+    ADD CONSTRAINT pk_favorite_events PRIMARY KEY (user_id, event_id);
+
+
+--
+-- Name: users pk_users; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT pk_users PRIMARY KEY (id);
+
+
+--
+-- Name: favorite_events favorite_events_event_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.favorite_events
+    ADD CONSTRAINT favorite_events_event_id_fkey FOREIGN KEY (event_id) REFERENCES public.events(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: favorite_events favorite_events_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.favorite_events
+    ADD CONSTRAINT favorite_events_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --

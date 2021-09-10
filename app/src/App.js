@@ -19,12 +19,16 @@ const App = () => (
   </>
 );
 
-const Home = () => (
-  <>
-    <Users />
-    <Events />
-  </>
-);
+const Home = () => {
+  const [selectedUser, setSelectedUser] = React.useState();
+
+  return (
+    <>
+      <Users {...{ selectedUser, setSelectedUser }} />
+      <Events {...{ selectedUser }} />
+    </>
+  );
+};
 
 const Dashboard = () => (
   <>

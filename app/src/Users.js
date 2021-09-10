@@ -2,8 +2,11 @@ import * as React from "react";
 
 import * as apiClient from "./apiClient";
 
-const Users = () => {
-  const { users, addUser, deleteUser } = useUsers();
+const Users = ({ selectedUser, setSelectedUser }) => {
+  const { users, addUser, deleteUser } = useUsers(
+    selectedUser,
+    setSelectedUser,
+  );
 
   return (
     <section>
@@ -19,7 +22,12 @@ const Users = () => {
               <dt>Email</dt>
               <dd>{email}</dd>
             </dl>
-            <button onClick={() => deleteUser(id)}>delete</button>
+            <button onClick={() => deleteUser(id)}>Delete</button>
+            {selectedUser === id ? null : (
+              <button type="button" onClick={() => setSelectedUser(id)}>
+                Select user
+              </button>
+            )}
           </li>
         ))}
       </ul>
@@ -51,12 +59,12 @@ const AddUser = ({ addUser }) => {
         Email
         <input name="email" type="email" required />
       </label>
-      <button>add</button>
+      <button>Add user</button>
     </form>
   );
 };
 
-const useUsers = () => {
+const useUsers = (selectedUser, setSelectedUser) => {
   const [users, setUsers] = React.useState([]);
 
   const getUsers = () => apiClient.getUsers().then(setUsers);
@@ -66,6 +74,12 @@ const useUsers = () => {
   React.useEffect(() => {
     getUsers();
   }, []);
+
+  React.useEffect(() => {
+    const userIds = users.map((u) => u.id);
+    if (selectedUser === undefined || !userIds.includes(selectedUser))
+      setSelectedUser(userIds?.[0]);
+  }, [users, selectedUser, setSelectedUser]);
 
   return { users, addUser, deleteUser };
 };

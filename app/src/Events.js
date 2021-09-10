@@ -4,20 +4,35 @@ import { format } from "date-fns";
 
 import * as apiClient from "./apiClient";
 
-const Events = () => {
+const Events = ({ selectedUser }) => {
   const {
     filteredEvents,
     addEvent,
     deleteEvent,
+    favoriteEvent,
+    unfavoriteEvent,
     setDateFilter,
     setCategoryFilter,
-  } = useEvents();
+    displayFavoritesOnly,
+    setDisplayFavoritesOnly,
+    user,
+  } = useEvents(selectedUser);
 
   return (
     <section>
-      <h1>Events</h1>
+      <h1>Events for {user?.username}</h1>
       <DateFilter {...{ setDateFilter }} />
       <CategoryFilter {...{ setCategoryFilter }} />
+      <label>
+        <input
+          type="checkbox"
+          defaultChecked={displayFavoritesOnly}
+          onChange={(e) => {
+            setDisplayFavoritesOnly(e.currentTarget.checked);
+          }}
+        />{" "}
+        Favorited events only
+      </label>
       <ul>
         {filteredEvents.map(({ id, name, date, category }) => (
           <li key={id}>
@@ -31,6 +46,21 @@ const Events = () => {
               <dt>Category</dt>
               <dd>{category}</dd>
             </dl>
+            {user?.favorites?.includes(id) ? (
+              <button
+                type="button"
+                onClick={() => unfavoriteEvent(selectedUser, id)}
+              >
+                Unfavorite
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => favoriteEvent(selectedUser, id)}
+              >
+                Favorite
+              </button>
+            )}
             <button onClick={() => deleteEvent(id)}>Delete</button>
           </li>
         ))}
@@ -113,15 +143,21 @@ const AddEvent = ({ addEvent }) => {
   );
 };
 
-const useEvents = () => {
+const useEvents = (selectedUser) => {
   const [events, setEvents] = React.useState([]);
+  const [displayFavoritesOnly, setDisplayFavoritesOnly] = React.useState(false);
   const [dateFilter, setDateFilter] = React.useState();
   const [categoryFilter, setCategoryFilter] = React.useState();
+  const [user, setUser] = React.useState();
+
+  const favoriteEvents = displayFavoritesOnly
+    ? events.filter((event) => user?.favorites.includes(event.id))
+    : events;
 
   const dateFilteredEvents =
     dateFilter === undefined
-      ? events
-      : events.filter(
+      ? favoriteEvents
+      : favoriteEvents.filter(
           (event) => format(event.date, "yyyy-MM-dd") === dateFilter,
         );
 
@@ -133,19 +169,36 @@ const useEvents = () => {
         );
 
   const getEvents = () => apiClient.getEvents().then(setEvents);
+  const getUser = React.useCallback(
+    () => apiClient.getUser(selectedUser).then(setUser),
+    [selectedUser],
+  );
   const addEvent = (event) => apiClient.addEvent(event).then(getEvents);
   const deleteEvent = (id) => apiClient.deleteEvent(id).then(getEvents);
+  const favoriteEvent = (userId, eventId) =>
+    apiClient.favoriteEvent(userId, eventId).then(getUser);
+  const unfavoriteEvent = (userId, eventId) =>
+    apiClient.unfavoriteEvent(userId, eventId).then(getUser);
 
   React.useEffect(() => {
     getEvents();
   }, []);
 
+  React.useEffect(() => {
+    selectedUser !== undefined && getUser();
+  }, [selectedUser, getUser]);
+
   return {
     filteredEvents,
     addEvent,
     deleteEvent,
+    favoriteEvent,
+    unfavoriteEvent,
     setDateFilter,
     setCategoryFilter,
+    displayFavoritesOnly,
+    setDisplayFavoritesOnly,
+    user,
   };
 };
 
