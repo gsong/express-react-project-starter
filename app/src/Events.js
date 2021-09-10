@@ -81,15 +81,17 @@ const CategoryFilter = ({ setCategoryFilter }) => {
 };
 
 const AddEvent = ({ addEvent }) => {
-  const onSubmit = (e) => {
+  const onSubmit = (event) => {
+    const form = event.currentTarget;
     const {
       name: { value: name },
       date: { value: date },
       category: { value: category },
-    } = e.currentTarget.elements;
+    } = form.elements;
 
-    e.preventDefault();
+    event.preventDefault();
     addEvent({ name, date, category });
+    form.reset();
   };
 
   return (

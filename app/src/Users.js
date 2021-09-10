@@ -30,13 +30,15 @@ const Users = () => {
 
 const AddUser = ({ addUser }) => {
   const onSubmit = (event) => {
+    const form = event.currentTarget;
     const {
       username: { value: username },
       email: { value: email },
-    } = event.currentTarget.elements;
+    } = form.elements;
 
     event.preventDefault();
     addUser({ username, email });
+    form.reset();
   };
 
   return (
