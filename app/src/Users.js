@@ -13,7 +13,8 @@ const Users = () => {
   }, []);
 
   return (
-    <>
+    <section>
+      <h1>Users</h1>
       <ul>
         {users.map(({ id, username, email }) => (
           <li key={id}>
@@ -29,12 +30,12 @@ const Users = () => {
           </li>
         ))}
       </ul>
-      <AddUserForm {...{ getUsers }} />
-    </>
+      <AddUser {...{ getUsers }} />
+    </section>
   );
 };
 
-const AddUserForm = ({ getUsers }) => {
+const AddUser = ({ getUsers }) => {
   const onSubmit = (event) => {
     const {
       username: { value: username },
