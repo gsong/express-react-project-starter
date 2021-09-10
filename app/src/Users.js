@@ -3,7 +3,7 @@ import * as React from "react";
 import * as apiClient from "./apiClient";
 
 const Users = () => {
-  const { users, getUsers, deleteUser } = useUsers();
+  const { users, addUser, deleteUser } = useUsers();
 
   return (
     <section>
@@ -23,12 +23,12 @@ const Users = () => {
           </li>
         ))}
       </ul>
-      <AddUser {...{ getUsers }} />
+      <AddUser {...{ addUser }} />
     </section>
   );
 };
 
-const AddUser = ({ getUsers }) => {
+const AddUser = ({ addUser }) => {
   const onSubmit = (event) => {
     const {
       username: { value: username },
@@ -36,7 +36,7 @@ const AddUser = ({ getUsers }) => {
     } = event.currentTarget.elements;
 
     event.preventDefault();
-    apiClient.addUser({ username, email }).then(getUsers);
+    addUser({ username, email });
   };
 
   return (
@@ -59,12 +59,13 @@ const useUsers = () => {
 
   const getUsers = () => apiClient.getUsers().then(setUsers);
   const deleteUser = (id) => apiClient.deleteUser(id).then(getUsers);
+  const addUser = (user) => apiClient.addUser(user).then(getUsers);
 
   React.useEffect(() => {
     getUsers();
   }, []);
 
-  return { users, getUsers, deleteUser };
+  return { users, addUser, deleteUser };
 };
 
 export default Users;

@@ -5,8 +5,13 @@ import { format } from "date-fns";
 import * as apiClient from "./apiClient";
 
 const Events = () => {
-  const { filteredEvents, getEvents, setDateFilter, setCategoryFilter } =
-    useEvents();
+  const {
+    filteredEvents,
+    addEvent,
+    deleteEvent,
+    setDateFilter,
+    setCategoryFilter,
+  } = useEvents();
 
   return (
     <section>
@@ -26,13 +31,11 @@ const Events = () => {
               <dt>Category</dt>
               <dd>{category}</dd>
             </dl>
-            <button onClick={() => apiClient.deleteEvent(id).then(getEvents)}>
-              Delete
-            </button>
+            <button onClick={() => deleteEvent(id)}>Delete</button>
           </li>
         ))}
       </ul>
-      <AddEvent {...{ getEvents }} />
+      <AddEvent {...{ addEvent }} />
     </section>
   );
 };
@@ -77,7 +80,7 @@ const CategoryFilter = ({ setCategoryFilter }) => {
   );
 };
 
-const AddEvent = ({ getEvents }) => {
+const AddEvent = ({ addEvent }) => {
   const onSubmit = (e) => {
     const {
       name: { value: name },
@@ -86,7 +89,7 @@ const AddEvent = ({ getEvents }) => {
     } = e.currentTarget.elements;
 
     e.preventDefault();
-    apiClient.addEvent({ name, date, category }).then(getEvents);
+    addEvent({ name, date, category });
   };
 
   return (
@@ -128,12 +131,20 @@ const useEvents = () => {
         );
 
   const getEvents = () => apiClient.getEvents().then(setEvents);
+  const addEvent = (event) => apiClient.addEvent(event).then(getEvents);
+  const deleteEvent = (id) => apiClient.deleteEvent(id).then(getEvents);
 
   React.useEffect(() => {
     getEvents();
   }, []);
 
-  return { filteredEvents, getEvents, setDateFilter, setCategoryFilter };
+  return {
+    filteredEvents,
+    addEvent,
+    deleteEvent,
+    setDateFilter,
+    setCategoryFilter,
+  };
 };
 
 export default Events;
