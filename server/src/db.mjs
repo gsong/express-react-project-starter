@@ -6,11 +6,22 @@ load_dotenv_if_exists();
 
 const db = initDb();
 
+export const getEvents = async () => db.any("SELECT * FROM events");
+
+export const addEvent = async (event) =>
+  await db.one(
+    "INSERT INTO events(name, date, category) VALUES(${name}, ${date}, ${category}) RETURNING *",
+    event,
+  );
+
+export const deleteEvent = async (eventId) =>
+  await db.none("DELETE FROM events WHERE id = ${eventId}", { eventId });
+
 export const getUsers = async () => db.any("SELECT * FROM users");
 
 export const addUser = async (user) =>
   await db.one(
-    "INSERT INTO users(username, email) VALUES(${username}, ${email}) RETURNING id, username, email",
+    "INSERT INTO users(username, email) VALUES(${username}, ${email}) RETURNING *",
     user,
   );
 

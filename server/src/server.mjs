@@ -1,10 +1,12 @@
 import express from "express";
 import mime from "mime-types";
 
+import eventRouter from "./eventRouter.mjs";
 import userRouter from "./userRouter.mjs";
 
 const app = express();
 
+app.use("/api/events", eventRouter);
 app.use("/api/users", userRouter);
 
 // Do not comment out or delete this end point. The React development server

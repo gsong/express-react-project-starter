@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Routes, Route, Link } from "react-router-dom";
 
+import Events from "./Events";
 import Users from "./Users";
 
 const App = () => (
@@ -18,7 +19,12 @@ const App = () => (
   </>
 );
 
-const Home = () => <Users />;
+const Home = () => (
+  <>
+    <Users />
+    <Events />
+  </>
+);
 
 const Dashboard = () => (
   <>

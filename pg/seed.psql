@@ -21,6 +21,32 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.events (
+    id integer NOT NULL,
+    name text NOT NULL,
+    date date NOT NULL,
+    category text NOT NULL
+);
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.events ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -46,6 +72,16 @@ ALTER TABLE public.users ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.events (id, name, date, category) FROM stdin;
+1	Yeah Yeah Yeahs Concert	2021-10-11	concert
+2	ACAB Protest	2021-10-12	social justice
+\.
+
+
+--
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -53,6 +89,13 @@ COPY public.users (id, username, email) FROM stdin;
 1	xiao	xiao@example.com
 2	tabitha	tabitha@example.com
 \.
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.events_id_seq', 2, true);
 
 
 --

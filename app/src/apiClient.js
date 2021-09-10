@@ -1,3 +1,12 @@
+export const getEvents = async () => {
+  const events = await _get("/api/events");
+  return events.map((event) => ({ ...event, date: new Date(event.date) }));
+};
+
+export const addEvent = async (event) => _post("/api/events", event);
+
+export const deleteEvent = async (eventId) => _delete(`/api/events/${eventId}`);
+
 export const getUsers = async () => _get("/api/users");
 
 export const addUser = async (user) => _post("/api/users", user);
