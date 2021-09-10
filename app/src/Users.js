@@ -37,13 +37,9 @@ const Users = () => {
 const AddUserForm = ({ getUsers }) => {
   const onSubmit = (event) => {
     const {
-      currentTarget: {
-        elements: {
-          username: { value: username },
-          email: { value: email },
-        },
-      },
-    } = event;
+      username: { value: username },
+      email: { value: email },
+    } = event.currentTarget.elements;
 
     event.preventDefault();
     apiClient.addUser({ username, email }).then(getUsers);
