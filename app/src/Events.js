@@ -5,36 +5,14 @@ import { format } from "date-fns";
 import * as apiClient from "./apiClient";
 
 const Events = () => {
-  const [events, setEvents] = React.useState([]);
-  const [dateFilter, setDateFilter] = React.useState();
-  const [categoryFilter, setCategoryFilter] = React.useState();
-
-  const dateFilteredEvents =
-    dateFilter === undefined
-      ? events
-      : events.filter(
-          (event) => format(event.date, "yyyy-MM-dd") === dateFilter,
-        );
-
-  const filteredEvents =
-    categoryFilter === undefined
-      ? dateFilteredEvents
-      : dateFilteredEvents.filter((event) =>
-          event.category.includes(categoryFilter),
-        );
-
-  const getEvents = () => apiClient.getEvents().then(setEvents);
-
-  React.useEffect(() => {
-    getEvents();
-  }, []);
+  const { filteredEvents, getEvents, setDateFilter, setCategoryFilter } =
+    useEvents();
 
   return (
     <section>
       <h1>Events</h1>
       <DateFilter {...{ setDateFilter }} />
       <CategoryFilter {...{ setCategoryFilter }} />
-      <div>{categoryFilter}</div>
       <ul>
         {filteredEvents.map(({ id, name, date, category }) => (
           <li key={id}>
@@ -128,6 +106,34 @@ const AddEvent = ({ getEvents }) => {
       <button>Add event</button>
     </form>
   );
+};
+
+const useEvents = () => {
+  const [events, setEvents] = React.useState([]);
+  const [dateFilter, setDateFilter] = React.useState();
+  const [categoryFilter, setCategoryFilter] = React.useState();
+
+  const dateFilteredEvents =
+    dateFilter === undefined
+      ? events
+      : events.filter(
+          (event) => format(event.date, "yyyy-MM-dd") === dateFilter,
+        );
+
+  const filteredEvents =
+    categoryFilter === undefined
+      ? dateFilteredEvents
+      : dateFilteredEvents.filter((event) =>
+          event.category.includes(categoryFilter),
+        );
+
+  const getEvents = () => apiClient.getEvents().then(setEvents);
+
+  React.useEffect(() => {
+    getEvents();
+  }, []);
+
+  return { filteredEvents, getEvents, setDateFilter, setCategoryFilter };
 };
 
 export default Events;

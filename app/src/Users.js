@@ -3,14 +3,7 @@ import * as React from "react";
 import * as apiClient from "./apiClient";
 
 const Users = () => {
-  const [users, setUsers] = React.useState([]);
-
-  const getUsers = () => apiClient.getUsers().then(setUsers);
-  const deleteUser = (id) => apiClient.deleteUser(id).then(getUsers);
-
-  React.useEffect(() => {
-    getUsers();
-  }, []);
+  const { users, getUsers, deleteUser } = useUsers();
 
   return (
     <section>
@@ -59,6 +52,19 @@ const AddUser = ({ getUsers }) => {
       <button>add</button>
     </form>
   );
+};
+
+const useUsers = () => {
+  const [users, setUsers] = React.useState([]);
+
+  const getUsers = () => apiClient.getUsers().then(setUsers);
+  const deleteUser = (id) => apiClient.deleteUser(id).then(getUsers);
+
+  React.useEffect(() => {
+    getUsers();
+  }, []);
+
+  return { users, getUsers, deleteUser };
 };
 
 export default Users;
