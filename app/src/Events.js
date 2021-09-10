@@ -7,12 +7,20 @@ import * as apiClient from "./apiClient";
 const Events = () => {
   const [events, setEvents] = React.useState([]);
   const [dateFilter, setDateFilter] = React.useState();
+  const [categoryFilter, setCategoryFilter] = React.useState();
 
-  const filteredEvents =
+  const dateFilteredEvents =
     dateFilter === undefined
       ? events
       : events.filter(
           (event) => format(event.date, "yyyy-MM-dd") === dateFilter,
+        );
+
+  const filteredEvents =
+    categoryFilter === undefined
+      ? dateFilteredEvents
+      : dateFilteredEvents.filter((event) =>
+          event.category.includes(categoryFilter),
         );
 
   const getEvents = () => apiClient.getEvents().then(setEvents);
@@ -23,8 +31,10 @@ const Events = () => {
 
   return (
     <section>
-      <SearchByDate {...{ setDateFilter }} />
-      <div>{dateFilter}</div>
+      <h1>Events</h1>
+      <DateFilter {...{ setDateFilter }} />
+      <CategoryFilter {...{ setCategoryFilter }} />
+      <div>{categoryFilter}</div>
       <ul>
         {filteredEvents.map(({ id, name, date, category }) => (
           <li key={id}>
@@ -44,24 +54,24 @@ const Events = () => {
           </li>
         ))}
       </ul>
-      <AddEventForm {...{ getEvents }} />
+      <AddEvent {...{ getEvents }} />
     </section>
   );
 };
 
-const SearchByDate = ({ setDateFilter }) => {
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setDateFilter(e.currentTarget.elements.date.value);
+const DateFilter = ({ setDateFilter }) => {
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setDateFilter(event.currentTarget.elements.date.value);
   };
 
   return (
     <form {...{ onSubmit }}>
       <label>
-        Search by date
+        Date
         <input name="date" type="date" />
       </label>
-      <button>Search by date</button>
+      <button>Filter by date</button>
       <button type="reset" onClick={() => setDateFilter()}>
         Clear date
       </button>
@@ -69,7 +79,27 @@ const SearchByDate = ({ setDateFilter }) => {
   );
 };
 
-const AddEventForm = ({ getEvents }) => {
+const CategoryFilter = ({ setCategoryFilter }) => {
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setCategoryFilter(event.currentTarget.elements.category.value);
+  };
+
+  return (
+    <form {...{ onSubmit }}>
+      <label>
+        Category
+        <input name="category" />
+      </label>
+      <button>Filter by category</button>
+      <button type="reset" onClick={() => setCategoryFilter()}>
+        Clear category
+      </button>
+    </form>
+  );
+};
+
+const AddEvent = ({ getEvents }) => {
   const onSubmit = (e) => {
     const {
       name: { value: name },
