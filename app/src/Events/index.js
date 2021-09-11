@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import { format } from "date-fns";
-
 import * as apiClient from "../apiClient";
 
 import styles from "./styles.module.scss";
@@ -59,7 +57,7 @@ const Events = ({ selectedUser }) => {
               <tr key={id} className={isFavorite ? styles.favorite : null}>
                 <td>{id}</td>
                 <td>{name}</td>
-                <td>{date.toDateString()}</td>
+                <td>{date}</td>
                 <td>{category}</td>
                 <td>
                   {isFavorite ? (
@@ -179,9 +177,7 @@ const useEvents = (selectedUser) => {
   const dateFilteredEvents =
     dateFilter === undefined
       ? favoriteEvents
-      : favoriteEvents.filter(
-          (event) => format(event.date, "yyyy-MM-dd") === dateFilter,
-        );
+      : favoriteEvents.filter((event) => event.date === dateFilter);
 
   const filteredEvents =
     categoryFilter === undefined

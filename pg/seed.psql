@@ -27,7 +27,7 @@ SET default_table_access_method = heap;
 CREATE TABLE public.events (
     id integer NOT NULL,
     name text NOT NULL,
-    date date NOT NULL,
+    date text NOT NULL,
     category text NOT NULL
 );
 

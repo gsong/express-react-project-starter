@@ -12,10 +12,7 @@ export const favoriteEvent = (userId, eventId) =>
 export const unfavoriteEvent = (userId, eventId) =>
   _post(`/api/users/${userId}/unfavoriteEvent`, { eventId });
 
-export const getEvents = async () => {
-  const events = await _get("/api/events");
-  return events.map((event) => ({ ...event, date: new Date(event.date) }));
-};
+export const getEvents = () => _get("/api/events");
 
 export const addEvent = (event) => _post("/api/events", event);
 
