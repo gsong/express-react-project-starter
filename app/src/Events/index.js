@@ -111,18 +111,16 @@ const DateFilter = ({ setDateFilter }) => {
 };
 
 const CategoryFilter = ({ setCategoryFilter }) => {
-  const onSubmit = (event) => {
-    event.preventDefault();
-    setCategoryFilter(event.currentTarget.elements.category.value);
+  const onChange = (event) => {
+    setCategoryFilter(event.currentTarget.value);
   };
 
   return (
-    <form {...{ onSubmit }}>
+    <form>
       <label>
         Category
-        <input name="category" />
+        <input name="category" {...{ onChange }} />
       </label>
-      <button>Filter by category</button>
       <button type="reset" onClick={() => setCategoryFilter()}>
         Clear category
       </button>
