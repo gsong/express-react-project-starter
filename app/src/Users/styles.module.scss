@@ -1,0 +1,18 @@
+@import "../shared";
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.list {
+  @include list;
+  --li-before-content: "💃";
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 0.5rem;
+  width: fit-content;
+}
