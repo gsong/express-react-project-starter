@@ -4,7 +4,6 @@ import mime from "mime-types";
 import * as db from "./db.mjs";
 
 const app = express();
-const port = process.env.PORT || 4000;
 
 const tasksRouter = express.Router();
 tasksRouter.use(express.json());
@@ -41,6 +40,7 @@ if (process.env?.SERVE_REACT?.toLowerCase() === "true") {
   });
 }
 
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.info(`Example server listening at http://localhost:${port}`);
 });
