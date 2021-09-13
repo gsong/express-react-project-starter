@@ -55,6 +55,16 @@
         "bug",
         "test"
       ]
+    },
+    {
+      "login": "ndp8",
+      "name": "Andy Peterson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54177?v=4",
+      "profile": "https://github.com/ndp8",
+      "contributions": [
+        "mentoring",
+        "code"
+      ]
     }
   ],
   "commit": true,
