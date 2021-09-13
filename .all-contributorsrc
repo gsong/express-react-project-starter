@@ -55,6 +55,16 @@
         "bug",
         "test"
       ]
+    },
+    {
+      "login": "ndp",
+      "name": "Andrew Peterson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54177?v=4",
+      "profile": "http://blog.ndpsoftware.com/",
+      "contributions": [
+        "code",
+        "mentoring"
+      ]
     }
   ],
   "commit": true,
