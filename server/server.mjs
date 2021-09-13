@@ -1,26 +1,11 @@
 import express from "express";
 import mime from "mime-types";
 
-import * as db from "./db.mjs";
+import taskRouter from "./taskRouter.mjs";
 
 const app = express();
-const port = process.env.PORT || 4000;
 
-const tasks = express.Router();
-
-tasks.get("/", async (request, response) => {
-  const tasks = await db.getTasks();
-  response.json(tasks);
-});
-
-tasks.use(express.json());
-tasks.post("/", async (request, response) => {
-  const { name } = request.body;
-  const task = await db.addTask(name);
-  response.status(201).json(task);
-});
-
-app.use("/api/tasks", tasks);
+app.use("/api/tasks", taskRouter);
 
 app.get("/api/ping", (request, response) =>
   response.json({ response: "pong" }),
@@ -41,6 +26,7 @@ if (process.env?.SERVE_REACT?.toLowerCase() === "true") {
   });
 }
 
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.info(`Example server listening at http://localhost:${port}`);
 });

@@ -1,15 +1,19 @@
-export const getTasks = async () => {
-  const response = await fetch("/api/tasks");
-  return response.json();
-};
+export const getTasks = () => _get("/api/tasks");
 
-export const addTask = async (name) => {
-  const response = await fetch("/api/tasks", {
+export const addTask = (name) => _post("/api/tasks", { name });
+
+const _get = async (url) => (await fetch(url)).json();
+
+const _post = async (url, body) => {
+  const response = await fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
   });
-  return response.json();
+  let result;
+  try {
+    result = await response.json();
+  } catch {}
+
+  return result;
 };
