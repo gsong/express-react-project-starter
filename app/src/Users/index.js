@@ -1,21 +1,15 @@
 import * as React from "react";
 
+import * as apiClient from "../apiClient";
+
 import styles from "./styles.module.scss";
-
-let userList = [
-  { id: 1, name: "Xiao", email: "xiao@email.com" },
-  { id: 2, name: "Natalie", email: "natalie@email.com" },
-  { id: 3, name: "Tabitha", email: "tabitha@email.com" },
-];
-
-let idSequence = 3;
 
 const Users = () => {
   const [users, setUsers] = React.useState([]);
 
-  const loadUsers = () => setUsers(userList);
+  const loadUsers = () => setUsers(apiClient.getUsers());
   const addUser = (user) => {
-    userList = [...userList, { ...user, id: (idSequence += 1) }];
+    apiClient.addUser(user);
     loadUsers();
   };
 
