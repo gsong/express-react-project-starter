@@ -31,6 +31,12 @@ directory.
    At the end of the process (which will take about 5 minutes), you'll be shown
    the details of your app, including the URL of where you can access the app.
 
+### Manual Deployment
+
+```sh
+npm run heroku:deploy
+```
+
 ### Automatic Deployment
 
 This repo also contains a [GitHub Actions][] deployment workflow. Any new
