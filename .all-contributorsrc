@@ -16,6 +16,7 @@
       "profile": "https://github.com/carbonsoda",
       "contributions": [
         "infra",
+        "review",
         "test"
       ]
     },
@@ -25,10 +26,11 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/76143251?v=4",
       "profile": "https://github.com/sunnybrie",
       "contributions": [
+        "bug",
         "doc",
         "ideas",
-        "mentoring",
-        "bug",
+        "question",
+        "review",
         "test"
       ]
     },
@@ -50,9 +52,9 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/63216164?v=4",
       "profile": "https://github.com/aedward8",
       "contributions": [
-        "mentoring",
-        "ideas",
         "bug",
+        "ideas",
+        "question",
         "test"
       ]
     },
@@ -64,6 +66,26 @@
       "contributions": [
         "code",
         "mentoring"
+      ]
+    },
+    {
+      "login": "ZelmaSedano",
+      "name": "ZelmaSedano",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55029831?v=4",
+      "profile": "https://github.com/ZelmaSedano",
+      "contributions": [
+        "tutorial"
+      ]
+    },
+    {
+      "login": "tabbykatz",
+      "name": "Tabitha O'Melay",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55110763?v=4",
+      "profile": "https://www.tabbykatz.com/",
+      "contributions": [
+        "bug",
+        "question",
+        "review"
       ]
     }
   ],
