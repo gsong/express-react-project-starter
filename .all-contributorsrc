@@ -65,6 +65,15 @@
         "code",
         "mentoring"
       ]
+    },
+    {
+      "login": "ZelmaSedano",
+      "name": "ZelmaSedano",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55029831?v=4",
+      "profile": "https://github.com/ZelmaSedano",
+      "contributions": [
+        "tutorial"
+      ]
     }
   ],
   "commit": true,
