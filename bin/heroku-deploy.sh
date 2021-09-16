@@ -3,5 +3,5 @@
 set -euo pipefail
 
 heroku container:login
-heroku container:push web
+DOCKER_DEFAULT_PLATFORM=linux/amd64 heroku container:push web
 heroku container:release web
