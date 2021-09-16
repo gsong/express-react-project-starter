@@ -17,7 +17,7 @@
       "contributions": [
         "infra",
         "review",
-        "test"
+        "userTesting"
       ]
     },
     {
@@ -31,7 +31,7 @@
         "ideas",
         "question",
         "review",
-        "test"
+        "userTesting"
       ]
     },
     {
@@ -55,7 +55,7 @@
         "bug",
         "ideas",
         "question",
-        "test"
+        "userTesting"
       ]
     },
     {
@@ -95,7 +95,17 @@
       "profile": "https://github.com/jenhuynh",
       "contributions": [
         "bug",
-        "test"
+        "userTesting"
+      ]
+    },
+    {
+      "login": "xiaozhong21",
+      "name": "Xiao Zhong",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11522217?v=4",
+      "profile": "https://github.com/xiaozhong21",
+      "contributions": [
+        "question",
+        "userTesting"
       ]
     }
   ],
