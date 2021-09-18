@@ -1,8 +1,8 @@
 # Starter Project With PostgreSQL, Express, and React
 
 End-to-end React app backed by an Express API server, persisting data to
-PostgreSQL database. The project has a very simple interface that fetches data
-from a single table in the database, and allows you to add rows to that table.
+PostgreSQL database. The project has a basic interface that fetches data from a
+single table in the database, and allows you to add rows to that table.
 
 [See the app in action][live].
 
@@ -33,6 +33,12 @@ it's located in `/Applications/Docker`.
 ### Node
 
 You'll need to install Node v14 or above. [`nvm`][nvm] is highly recommended.
+
+## Create a New Repository From This Template
+
+[Generate a new repository from this template](https://github.com/gsong/express-react-project-starter/generate).
+
+[See GitHub documentation for more details](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
 
 ## Set Up the Development Environment
 
