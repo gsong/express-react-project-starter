@@ -1,5 +1,5 @@
 {
-  "name": "express-react-project-example",
+  "name": "express-react-project-starter",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -28,14 +28,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gsong/express-react-project-example.git"
+    "url": "git+https://github.com/gsong/express-react-project-starter.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gsong/express-react-project-example/issues"
+    "url": "https://github.com/gsong/express-react-project-starter/issues"
   },
-  "homepage": "https://github.com/gsong/express-react-project-example#readme",
+  "homepage": "https://github.com/gsong/express-react-project-starter#readme",
   "dependencies": {
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2"
