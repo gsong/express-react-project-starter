@@ -10,7 +10,9 @@ from a single table in the database, and allows you to add rows to that table.
 [![Reset Heroku DB][reset-badge]][reset-workflow]
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Prerequisites
@@ -99,6 +101,12 @@ npm run psql
 ## Deployment
 
 [Read about setting up and deploying to Heroku](docs/deployment.md).
+
+## Examples Implemented Using This Template
+
+- [Eventonica](https://github.com/gsong/express-react-project-example/pull/25)
+- [Adding a new feature step-by-step](https://github.com/gsong/express-react-project-example/pull/29)
+- [Integration with Google Calendar](https://github.com/gsong/express-react-project-example/pull/3)
 
 [deploy-badge]: https://github.com/gsong/express-react-project-example/actions/workflows/deploy.yaml/badge.svg
 [deploy-workflow]: https://github.com/gsong/express-react-project-example/actions/workflows/deploy.yaml
