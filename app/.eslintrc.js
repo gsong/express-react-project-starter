@@ -8,6 +8,7 @@ module.exports = {
     "react-app",
   ],
   rules: {
+    "jsx-a11y/no-onchange": "off",
     "import/no-unresolved": "error",
     "import/order": [
       "error",
