@@ -7,6 +7,8 @@ const app = express();
 
 app.use("/api/tasks", taskRouter);
 
+// Do not comment out or delete this end point. The React development server
+// won't start until it pings this end point successfully.
 app.get("/api/ping", (request, response) =>
   response.json({ response: "pong" }),
 );
