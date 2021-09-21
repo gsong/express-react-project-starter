@@ -101,8 +101,8 @@ npm run psql
 ## Want More Details?
 
 - [Read about the application stack](docs/application-stack.md).
-- [Read about the Express server](server/README.md).
-- [Read about the React app](app/README.md).
+- [Read about the Express server](api-server/README.md).
+- [Read about the React app](web-app/README.md).
 
 ## Deployment
 
