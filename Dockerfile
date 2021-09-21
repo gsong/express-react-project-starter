@@ -19,7 +19,7 @@ FROM node:lts-alpine as production
 ARG NODE_ENV=production
 ENV SERVE_REACT=true
 WORKDIR /app
-COPY --from=app /app/build .
+COPY --from=web-app /app/build .
 WORKDIR /server
 COPY --from=server /server .
 CMD npm run serve

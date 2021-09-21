@@ -1,6 +1,6 @@
 *
-!app/package*.json
-!app/public
-!app/src
-!server/*.mjs
-!server/package*.json
+!web-app/package*.json
+!web-app/public
+!web-app/src
+!api-server/*.mjs
+!api-server/package*.json

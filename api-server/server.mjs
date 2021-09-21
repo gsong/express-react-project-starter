@@ -24,7 +24,7 @@ if (process.env?.SERVE_REACT?.toLowerCase() === "true") {
   );
 
   app.get("*", (req, res) => {
-    res.sendFile("/app/index.html");
+    res.sendFile("/web-app/index.html");
   });
 }
 
