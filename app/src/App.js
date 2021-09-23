@@ -5,15 +5,17 @@ import { Routes, Route, Link } from "react-router-dom";
 import Tasks from "./Tasks";
 
 const App = () => (
-  <main>
+  <>
     <nav>
       <Link to="/">Home</Link> | <Link to="dashboard">Dashboard</Link>
     </nav>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
-  </main>
+    <main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </main>
+  </>
 );
 
 const Home = () => (
