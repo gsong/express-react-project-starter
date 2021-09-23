@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import * as apiClient from "../apiClient";
+import { objectFromFormData } from "../utils";
 
 import styles from "./styles.module.scss";
 
@@ -93,7 +94,7 @@ const Events = ({ selectedUser }) => {
 const DateFilter = ({ setDateFilter }) => {
   const onSubmit = (event) => {
     event.preventDefault();
-    setDateFilter(event.currentTarget.elements.date.value);
+    setDateFilter(new FormData(event.currentTarget).get("date"));
   };
 
   return (
@@ -131,14 +132,10 @@ const CategoryFilter = ({ setCategoryFilter }) => {
 const AddEvent = ({ addEvent }) => {
   const onSubmit = (event) => {
     const form = event.currentTarget;
-    const {
-      name: { value: name },
-      date: { value: date },
-      category: { value: category },
-    } = form.elements;
+    const newEvent = objectFromFormData(form);
 
     event.preventDefault();
-    addEvent({ name, date, category });
+    addEvent(newEvent);
     form.reset();
   };
 

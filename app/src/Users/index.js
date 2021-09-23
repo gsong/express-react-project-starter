@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import * as apiClient from "../apiClient";
+import { objectFromFormData } from "../utils";
 
 import styles from "./styles.module.scss";
 
@@ -56,13 +57,10 @@ const Users = ({ selectedUser, setSelectedUser }) => {
 const AddUser = ({ addUser }) => {
   const onSubmit = (event) => {
     const form = event.currentTarget;
-    const {
-      username: { value: username },
-      email: { value: email },
-    } = form.elements;
+    const user = objectFromFormData(form);
 
     event.preventDefault();
-    addUser({ username, email });
+    addUser(user);
     form.reset();
   };
 
