@@ -14,7 +14,7 @@ const Tasks = () => {
 
   return (
     <section>
-      <TaskList tasks={tasks} />
+      <TaskList {...{ tasks }} />
       <AddTask {...{ addTask }} />
     </section>
   );
@@ -42,7 +42,7 @@ const AddTask = ({ addTask }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form {...{ onSubmit }}>
       <label>
         New task:{" "}
         <input onChange={(e) => setTask(e.currentTarget.value)} value={task} />
