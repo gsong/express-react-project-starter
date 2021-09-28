@@ -45,18 +45,27 @@ const AddTask = ({ addTask }) => {
   const canAdd = task !== "";
 
   const onSubmit = (e) => {
+    const form = e.currentTarget;
+
     e.preventDefault();
     if (canAdd) {
-      addTask(task);
+      addTask(new FormData(form));
       setTask("");
     }
+
+    form.reset();
   };
 
   return (
     <form {...{ onSubmit }}>
       <label>
         New task:{" "}
-        <input onChange={(e) => setTask(e.currentTarget.value)} value={task} />
+        <input
+          name="name"
+          onChange={(e) => setTask(e.currentTarget.value)}
+          value={task}
+        />
+        <input name="image" type="file" />
       </label>
       <button disabled={!canAdd} className={styles.button}>
         Add

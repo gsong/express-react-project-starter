@@ -1,8 +1,9 @@
 import express from "express";
-import mm from "mmmagic";
+import multer from "multer";
 
 import * as db from "./db.mjs";
 
+const upload = multer({ storage: multer.memoryStorage() });
 const taskRouter = express.Router();
 
 taskRouter.get("/", async (request, response) => {
@@ -11,16 +12,16 @@ taskRouter.get("/", async (request, response) => {
 });
 
 taskRouter.get("/:id/image", async (request, response) => {
-  const { image } = await db.getTaskImage(request.params.id);
-
-  new mm.Magic(mm.MAGIC_MIME_TYPE).detect(image, (err, result) => {
-    response.set("Content-Type", result).send(image);
-  });
+  const { image, mimetype } = await db.getTaskImage(request.params.id);
+  response.set("Content-Type", mimetype).send(image);
 });
 
-taskRouter.use(express.json());
-taskRouter.post("/", async (request, response) => {
-  const task = await db.addTask(request.body.name);
+taskRouter.post("/", upload.single("image"), async (request, response) => {
+  const task = await db.addTask(
+    request.body.name,
+    request.file?.buffer,
+    request.file?.mimetype,
+  );
   response.status(201).json(task);
 });
 
