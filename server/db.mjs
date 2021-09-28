@@ -6,7 +6,7 @@ const db = initDb();
 export const getTasks = () => db.any("SELECT * FROM tasks");
 
 export const addTask = (name) =>
-  db.one("INSERT INTO tasks(name) VALUES(${name}) RETURNING *", { name });
+  db.one("INSERT INTO tasks(name) VALUES($<name>) RETURNING *", { name });
 
 function initDb() {
   let connection;
