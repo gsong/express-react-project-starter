@@ -7,7 +7,10 @@ const upload = multer({ storage: multer.memoryStorage() });
 const taskRouter = express.Router();
 
 taskRouter.get("/", async (request, response) => {
-  const tasks = await db.getTasks();
+  const tasks = (await db.getTasks()).map((task) => ({
+    ...task,
+    imageUrl: task.hasImage ? `/api/tasks/${task.id}/image` : null,
+  }));
   response.json(tasks);
 });
 

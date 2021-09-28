@@ -24,12 +24,12 @@ const Tasks = () => {
 
 const TaskList = ({ tasks }) => (
   <ul className={styles.list}>
-    {tasks.map(({ id, name, hasImage }) => (
+    {tasks.map(({ id, name, hasImage, imageUrl }) => (
       <li key={id}>
         {name}
         {hasImage ? (
           <img
-            src={`/api/tasks/${id}/image`}
+            src={imageUrl}
             alt={name}
             style={{ width: 200, objectFit: "contain", marginLeft: "1rem" }}
           />
