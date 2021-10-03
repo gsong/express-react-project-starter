@@ -1,0 +1,19 @@
+.list {
+  list-style: none;
+  margin: 2rem 0 3rem;
+  padding-left: 0;
+
+  li {
+    margin-top: 1rem;
+
+    &::before {
+      content: "🐶";
+      font-size: 1.5rem;
+      margin-right: 1.25rem;
+    }
+  }
+}
+
+.button {
+  margin-left: 1rem;
+}
