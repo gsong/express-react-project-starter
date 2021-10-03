@@ -65,7 +65,7 @@ const AddUser = ({ addUser }) => {
   };
 
   return (
-    <form {...{ onSubmit }}>
+    <form {...{ onSubmit }} className={styles.form}>
       <label>
         Username
         <input name="username" required />

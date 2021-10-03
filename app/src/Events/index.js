@@ -140,7 +140,7 @@ const AddEvent = ({ addEvent }) => {
   };
 
   return (
-    <form {...{ onSubmit }}>
+    <form {...{ onSubmit }} className={styles.form}>
       <label>
         Name
         <input name="name" required />

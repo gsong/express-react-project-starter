@@ -30,16 +30,6 @@ section:not(:first-of-type) {
   margin-top: 2.5rem;
 }
 
-form {
-  > :not(:first-child) {
-    margin-left: 1rem;
-  }
-
-  input {
-    margin-left: 0.25rem;
-  }
-}
-
 table {
   border-collapse: collapse;
   margin-bottom: 0.5rem;
