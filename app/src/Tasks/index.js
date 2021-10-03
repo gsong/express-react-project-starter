@@ -27,13 +27,7 @@ const TaskList = ({ tasks }) => (
     {tasks.map(({ id, name, hasImage, imageUrl }) => (
       <li key={id}>
         {name}
-        {hasImage ? (
-          <img
-            src={imageUrl}
-            alt={name}
-            style={{ width: 200, objectFit: "contain", marginLeft: "1rem" }}
-          />
-        ) : null}
+        {hasImage ? <img src={imageUrl} alt={name} /> : null}
       </li>
     ))}
   </ul>
@@ -57,19 +51,20 @@ const AddTask = ({ addTask }) => {
   };
 
   return (
-    <form {...{ onSubmit }}>
+    <form {...{ onSubmit }} className={styles.form}>
       <label>
-        New task:{" "}
+        New task:
         <input
           name="name"
           onChange={(e) => setTask(e.currentTarget.value)}
           value={task}
         />
-        <input name="image" type="file" />
       </label>
-      <button disabled={!canAdd} className={styles.button}>
-        Add
-      </button>
+      <label>
+        Image:
+        <input name="image" type="file" accept="image/*" />
+      </label>
+      <button disabled={!canAdd}>Add</button>
     </form>
   );
 };
