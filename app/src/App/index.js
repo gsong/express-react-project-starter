@@ -4,7 +4,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 
 import Tasks from "../Tasks";
 
-import styles from "./styles.module.scss";
+import styles from "./styles.module.css";
 
 const App = () => (
   <>
