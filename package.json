@@ -24,7 +24,8 @@
     "prettier": "prettier --write .",
     "psql": "docker-compose exec -u postgres db /usr/bin/env ash -c 'psql ${POSTGRES_DB}'",
     "server:start": "cd server && npm start",
-    "start": "run-p db:start server:start app:start"
+    "start": "run-p db:start server:start app:start",
+    "stop": "run-s db:stop"
   },
   "repository": {
     "type": "git",

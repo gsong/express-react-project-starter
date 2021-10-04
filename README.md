@@ -89,8 +89,8 @@ Visit <http://localhost:3000>.
 ## Shut Down the Development Environment
 
 1. `Ctrl-C` to stop the Express and React development servers.
-1. `npm run db:stop` to stop and destroy the PostgreSQL Docker container. Don't
-   worry, your data is safe.
+1. `npm stop` to stop and destroy the PostgreSQL Docker container. Don't worry,
+   your data is safe.
 
 ## Need to Start a `psql` Session?
 
