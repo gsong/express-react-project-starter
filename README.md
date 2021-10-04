@@ -112,7 +112,8 @@ npm run psql
 
 - [Eventonica](https://github.com/gsong/express-react-project-starter/pull/25)
 - [Adding a new feature step-by-step](https://github.com/gsong/express-react-project-starter/pull/29)
-- [Integration with Google Calendar](https://github.com/gsong/express-react-project-starter/pull/3)
+- [Store binary data in PostgreSQL](https://github.com/gsong/express-react-project-starter/pull/36)
+- [Integrate with Google Calendar](https://github.com/gsong/express-react-project-starter/pull/3)
 
 [deploy-badge]: https://github.com/gsong/express-react-project-starter/actions/workflows/deploy.yaml/badge.svg
 [deploy-workflow]: https://github.com/gsong/express-react-project-starter/actions/workflows/deploy.yaml
