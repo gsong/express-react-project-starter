@@ -1,8 +1,11 @@
 import express from "express";
 
 import * as db from "./db.mjs";
+import jwtCheck from "./jwtCheck.mjs";
 
 const taskRouter = express.Router();
+
+taskRouter.use(jwtCheck);
 
 taskRouter.get("/", async (request, response) => {
   const tasks = await db.getTasks();

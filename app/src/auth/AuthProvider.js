@@ -3,10 +3,11 @@ import React from "react";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
-const AuthProvider = (props) => {
-  const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-  const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
 
+const AuthProvider = (props) => {
   const navigate = useNavigate();
 
   const onRedirectCallback = (appState) => {
@@ -15,11 +16,8 @@ const AuthProvider = (props) => {
 
   return (
     <Auth0Provider
-      domain={domain}
-      clientId={clientId}
       redirectUri={window.location.origin}
-      {...{ onRedirectCallback }}
-      {...props}
+      {...{ domain, clientId, audience, onRedirectCallback, ...props }}
     />
   );
 };

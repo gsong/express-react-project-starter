@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
 
-import { Login, Logout } from "../auth";
+import { Login, Logout } from "../auth/widgets";
 
 import styles from "./styles.module.scss";
 

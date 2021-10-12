@@ -1,10 +1,11 @@
 import * as React from "react";
 
+import { useAuth0 } from "@auth0/auth0-react";
 import { Routes, Route } from "react-router-dom";
 
+import Nav from "../Nav";
 import Tasks from "../Tasks";
-import Nav from "../widgets/Nav";
-import { Protected } from "../widgets/auth";
+import { Protected } from "../auth/widgets";
 
 import styles from "./styles.module.scss";
 
@@ -27,15 +28,19 @@ const App = () => {
   );
 };
 
-const Home = () => (
-  <>
-    <header className={styles.header}>
-      <h1>{process.env.REACT_APP_TITLE}</h1>
-      <p>{process.env.REACT_APP_SUBTITLE}</p>
-    </header>
-    <Tasks />
-  </>
-);
+const Home = () => {
+  const { isAuthenticated } = useAuth0();
+
+  return (
+    <>
+      <header className={styles.header}>
+        <h1>{process.env.REACT_APP_TITLE}</h1>
+        <p>{process.env.REACT_APP_SUBTITLE}</p>
+      </header>
+      {isAuthenticated ? <Tasks /> : null}
+    </>
+  );
+};
 
 const Dashboard = () => <h1>Dashboard</h1>;
 

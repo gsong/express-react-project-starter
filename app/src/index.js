@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import App from "./App";
-import AuthProvider from "./AuthProvider";
+import AuthProvider from "./auth/AuthProvider";
 import reportWebVitals from "./reportWebVitals";
 
 import "./global.scss";
