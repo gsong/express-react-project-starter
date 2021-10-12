@@ -1,29 +1,31 @@
 import * as React from "react";
 
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Tasks from "../Tasks";
+import Nav from "../widgets/Nav";
+import { Protected } from "../widgets/auth";
 
 import styles from "./styles.module.scss";
 
-const App = () => (
-  <>
-    <header>
-      <nav className={styles.nav}>
-        <NavLink to="/" end>
-          Home
-        </NavLink>{" "}
-        | <NavLink to="dashboard">Dashboard</NavLink>
-      </nav>
-    </header>
-    <main>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </main>
-  </>
-);
+const App = () => {
+  return (
+    <>
+      <header>
+        <Nav />
+      </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/dashboard"
+            element={<Protected component={Dashboard} />}
+          />
+        </Routes>
+      </main>
+    </>
+  );
+};
 
 const Home = () => (
   <>
@@ -35,10 +37,6 @@ const Home = () => (
   </>
 );
 
-const Dashboard = () => (
-  <>
-    <h1>Dashboard</h1>
-  </>
-);
+const Dashboard = () => <h1>Dashboard</h1>;
 
 export default App;

@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import App from "./App";
+import AuthProvider from "./AuthProvider";
 import reportWebVitals from "./reportWebVitals";
 
 import "./global.scss";
@@ -11,7 +12,9 @@ import "./global.scss";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root"),
