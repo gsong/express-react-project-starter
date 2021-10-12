@@ -11,6 +11,18 @@ export const getTasks = () => db.any("SELECT * FROM tasks");
 export const addTask = (name) =>
   db.one("INSERT INTO tasks(name) VALUES($<name>) RETURNING *", { name });
 
+export const addOrUpdateUser = (user) =>
+  db.one(
+    `INSERT INTO users(given_name, family_name, picture, email, sub)
+      VALUES($<given_name>, $<family_name>, $<picture>, $<email>, $<sub>)
+      ON CONFLICT (sub) DO
+        UPDATE SET given_name = $<given_name>, family_name = $<family_name>,
+          picture = $<picture>, email=$<email>
+      RETURNING *
+    `,
+    user,
+  );
+
 function initDb() {
   let connection;
 

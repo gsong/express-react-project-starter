@@ -5,11 +5,21 @@ import { Routes, Route } from "react-router-dom";
 
 import Nav from "../Nav";
 import Tasks from "../Tasks";
+import useApi from "../auth/useApi";
 import { Protected } from "../auth/widgets";
 
 import styles from "./styles.module.scss";
 
 const App = () => {
+  const { isAuthenticated, user } = useAuth0();
+  const { loading, apiClient } = useApi();
+
+  React.useEffect(() => {
+    if (isAuthenticated && !loading) {
+      apiClient.addOrUpdateUser(user);
+    }
+  }, [isAuthenticated, user, loading, apiClient]);
+
   return (
     <>
       <header>
