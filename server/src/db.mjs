@@ -6,10 +6,19 @@ load_dotenv_if_exists();
 
 const db = initDb();
 
-export const getTasks = () => db.any("SELECT * FROM tasks");
+export const getTasks = (sub) =>
+  db.any(
+    "SELECT tasks.* FROM tasks LEFT JOIN users on user_id=users.id WHERE sub=$<sub>",
+    { sub },
+  );
 
-export const addTask = (name) =>
-  db.one("INSERT INTO tasks(name) VALUES($<name>) RETURNING *", { name });
+export const addTask = (sub, name) =>
+  db.one(
+    `INSERT INTO tasks(user_id, name)
+      VALUES((SELECT id FROM users WHERE sub=$<sub>), $<name>)
+      RETURNING *`,
+    { sub, name },
+  );
 
 export const addOrUpdateUser = (user) =>
   db.one(
@@ -18,8 +27,7 @@ export const addOrUpdateUser = (user) =>
       ON CONFLICT (sub) DO
         UPDATE SET given_name = $<given_name>, family_name = $<family_name>,
           picture = $<picture>, email=$<email>
-      RETURNING *
-    `,
+      RETURNING *`,
     user,
   );
 
