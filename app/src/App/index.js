@@ -11,14 +11,14 @@ import { Protected } from "../auth/widgets";
 import styles from "./styles.module.scss";
 
 const App = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   const { loading, apiClient } = useApi();
 
   React.useEffect(() => {
     if (isAuthenticated && !loading) {
-      apiClient.addOrUpdateUser();
+      apiClient.addOrUpdateUser(user);
     }
-  }, [isAuthenticated, loading, apiClient]);
+  }, [isAuthenticated, user, loading, apiClient]);
 
   return (
     <>
