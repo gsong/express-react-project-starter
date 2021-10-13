@@ -13,6 +13,7 @@ const decorateUser = (user) => {
     given_name: name.first,
     family_name: name.last,
     email: null,
+    picture: null,
     ...user,
   };
 };

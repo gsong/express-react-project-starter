@@ -59,7 +59,7 @@ CREATE TABLE public.users (
     id integer NOT NULL,
     given_name text NOT NULL,
     family_name text NOT NULL,
-    picture text NOT NULL,
+    picture text,
     email text,
     sub text NOT NULL
 );
