@@ -3,16 +3,18 @@ import { parseFullName } from "parse-full-name";
 
 const useAuth0 = () => {
   const { isAuthenticated, user: _user, ...rest } = useBaseAuth0();
-
-  const user = { ..._user };
-
-  if (isAuthenticated && user.sub.startsWith("github")) {
-    const name = parseFullName(user.name);
-    user.given_name = name.first;
-    user.family_name = name.last;
-  }
-
+  const user = isAuthenticated ? decorateUser(_user) : _user;
   return { isAuthenticated, user, ...rest };
+};
+
+const decorateUser = (user) => {
+  const name = parseFullName(user.name);
+  return {
+    given_name: name.first,
+    family_name: name.last,
+    email: null,
+    ...user,
+  };
 };
 
 export default useAuth0;
