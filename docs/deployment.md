@@ -75,22 +75,29 @@ Add via [Heroku config vars][].
 For any `REACT_APP_*` environment variables, you need to add them in three
 places:
 
-#### GitHub Secrets
+#### 1. GitHub Secrets
 
 Add the appropriate keys and values via [GitHub secrets][].
 
 For this example, we'll use `REACT_APP_TITLE` and `REACT_APP_SUBTITLE`.
 
-#### .github/workflows/deploy.yaml
+#### 2. `.github/workflows/deploy.yaml`
 
-For the "Build and push to heroku registry" step, add all the variables to the
-`--arg` line, with each key value pair separated by a comma without spaces:
+For the "Deploy to Heroku" step, add all the variables to the
+`with/docker_build_args` and `env` sections. For example:
 
 ```yaml
---arg REACT_APP_TITLE="${{secrets.REACT_APP_TITLE}}",REACT_APP_SUBTITLE="${{secrets.REACT_APP_SUBTITLE}}"
+with:
+  ...
+  docker_build_args: |
+    REACT_APP_TITLE
+    REACT_APP_SUBTITLE
+env:
+  REACT_APP_TITLE: ${{ secrets.REACT_APP_TITLE }}
+  REACT_APP_SUBTITLE: ${{ secrets.REACT_APP_SUBTITLE }}
 ```
 
-#### Dockerfile
+#### 3. `Dockerfile`
 
 You'll also need to add the same variable key as a Docker build arg for the app
 stage.
