@@ -110,10 +110,11 @@ npm run psql
 
 ## Examples Implemented Using This Template
 
-- [Eventonica](https://github.com/gsong/express-react-project-starter/pull/25)
 - [Adding a new feature step-by-step](https://github.com/gsong/express-react-project-starter/pull/29)
 - [Store binary data in PostgreSQL](https://github.com/gsong/express-react-project-starter/pull/36)
-- [Integrate with Google Calendar](https://github.com/gsong/express-react-project-starter/pull/3)
+- [Eventonica](https://github.com/gsong/express-react-project-starter/pull/25)
+- [Integrate Auth0](https://github.com/gsong/express-react-project-starter/pull/44)
+- [Integrate Google Calendar](https://github.com/gsong/express-react-project-starter/pull/3)
 
 [deploy-badge]: https://github.com/gsong/express-react-project-starter/actions/workflows/deploy.yaml/badge.svg
 [deploy-workflow]: https://github.com/gsong/express-react-project-starter/actions/workflows/deploy.yaml
