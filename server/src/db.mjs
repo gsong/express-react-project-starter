@@ -1,3 +1,6 @@
+import path from "path";
+import { URL } from "url";
+
 import dotenv from "dotenv";
 import pgp from "pg-promise";
 
@@ -12,7 +15,9 @@ function initDb() {
   let connection;
 
   if (process.env.DATABASE_URL === undefined) {
-    dotenv.config({ path: "../.env" });
+    dotenv.config({
+      path: path.join(new URL(".", import.meta.url).pathname, "../../.env"),
+    });
     connection = {
       user: "postgres",
       database: process.env.POSTGRES_DB,
