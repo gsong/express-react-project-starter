@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import { useAuth0 } from "@auth0/auth0-react";
 import { Routes, Route } from "react-router-dom";
 
 import Nav from "../Nav";
 import Tasks from "../Tasks";
 import useApi from "../auth/useApi";
+import useAuth0 from "../auth/useAuth0";
 import { Protected } from "../auth/widgets";
 
 import styles from "./styles.module.scss";

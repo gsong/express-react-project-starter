@@ -1,4 +1,6 @@
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+
+import useAuth0 from "./useAuth0";
 
 export const Login = () => {
   const { loginWithRedirect } = useAuth0();
