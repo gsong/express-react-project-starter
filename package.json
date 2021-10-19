@@ -15,6 +15,7 @@
     "db:start": "docker-compose up -d",
     "db:stop": "docker-compose down",
     "eslint": "(cd app && npm run eslint); (cd server && npm run eslint)",
+    "heroku:app:create": "bin/heroku-app-create.sh",
     "heroku:dashboard": "open https://dashboard.heroku.com/apps/$(heroku apps | sed -n '2 p')",
     "heroku:db:init": "run-s _heroku:db:reset _heroku:db:init",
     "heroku:deploy": "bin/heroku-deploy.sh",
