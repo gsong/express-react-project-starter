@@ -107,6 +107,15 @@
         "question",
         "userTesting"
       ]
+    },
+    {
+      "login": "Shaylan7",
+      "name": "Shaylan7",
+      "avatar_url": "https://avatars.githubusercontent.com/u/80442267?v=4",
+      "profile": "https://github.com/Shaylan7",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "commit": true,
