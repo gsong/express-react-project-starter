@@ -17,6 +17,8 @@ const AuthProvider = (props) => {
   return (
     <Auth0Provider
       redirectUri={window.location.origin}
+      cacheLocation="localstorage"
+      useRefreshTokens
       {...{ domain, clientId, audience, onRedirectCallback, ...props }}
     />
   );
