@@ -18,7 +18,7 @@
     "heroku:app:create": "bin/heroku-app-create.sh",
     "heroku:dashboard": "open https://dashboard.heroku.com/apps/$(heroku apps | sed -n '2 p')",
     "heroku:db:init": "run-s _heroku:db:reset _heroku:db:init",
-    "heroku:deploy": "bin/heroku-deploy.sh",
+    "heroku:deploy": "node bin/heroku-deploy.mjs",
     "heroku:psql": "docker-compose run --rm -e DATABASE_URL=$(heroku config:get DATABASE_URL) db ash -c 'psql ${DATABASE_URL}'",
     "heroku:setup": "bin/heroku-setup.sh",
     "postinstall": "(cd app && npm install); (cd server && npm install)",
@@ -39,6 +39,7 @@
   },
   "homepage": "https://github.com/gsong/express-react-project-starter#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2"
   },
