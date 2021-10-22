@@ -10,7 +10,7 @@ single table in the database, and allows you to add rows to that table.
 [![Reset Heroku DB][reset-badge]][reset-workflow]
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Prerequisites
@@ -144,6 +144,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/Shaylan7"><img src="https://avatars.githubusercontent.com/u/80442267?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shaylan7</b></sub></a><br /><a href="https://github.com/gsong/express-react-project-example/issues?q=author%3AShaylan7" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://www.tabbykatz.com/"><img src="https://avatars.githubusercontent.com/u/55110763?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tabitha O'Melay</b></sub></a><br /><a href="https://github.com/gsong/express-react-project-example/issues?q=author%3Atabbykatz" title="Bug reports">🐛</a> <a href="#question-tabbykatz" title="Answering Questions">💬</a> <a href="https://github.com/gsong/express-react-project-example/pulls?q=is%3Apr+reviewed-by%3Atabbykatz" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/talarsen"><img src="https://avatars.githubusercontent.com/u/20806815?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tara Larsen</b></sub></a><br /><a href="https://github.com/gsong/express-react-project-example/issues?q=author%3Atalarsen" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/xiaozhong21"><img src="https://avatars.githubusercontent.com/u/11522217?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Xiao Zhong</b></sub></a><br /><a href="#question-xiaozhong21" title="Answering Questions">💬</a> <a href="#userTesting-xiaozhong21" title="User Testing">📓</a></td>
     <td align="center"><a href="https://github.com/ZelmaSedano"><img src="https://avatars.githubusercontent.com/u/55029831?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ZelmaSedano</b></sub></a><br /><a href="#tutorial-ZelmaSedano" title="Tutorials">✅</a></td>
   </tr>
