@@ -10,7 +10,7 @@ const DOTENV_FILE = path.join(
   "../app/.env",
 );
 
-let args;
+let args = {};
 
 if (fs.existsSync(DOTENV_FILE)) {
   args = dotenv.parse(fs.readFileSync(DOTENV_FILE));
@@ -20,10 +20,13 @@ const argString = Object.entries(args)
   .map(([key, value]) => `${key}="${value}"`)
   .join(",");
 
+let containerPush =
+  "DOCKER_DEFAULT_PLATFORM=linux/amd64 heroku container:push web";
+
+if (argString !== "") containerPush += `  --arg ${argString}`;
+
 spawn("heroku container:login");
-spawn(
-  `DOCKER_DEFAULT_PLATFORM=linux/amd64 heroku container:push web --arg ${argString}`,
-);
+spawn(containerPush);
 spawn("heroku container:release web");
 
 function spawn(cmd) {
