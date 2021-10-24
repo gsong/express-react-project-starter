@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 import useAuth0 from "./useAuth0";
@@ -19,6 +21,9 @@ export const Logout = () => {
 };
 
 export const Protected = ({ component, ...props }) => {
-  const Component = withAuthenticationRequired(component);
+  const Component = React.useMemo(
+    () => withAuthenticationRequired(component),
+    [component],
+  );
   return <Component {...props} />;
 };
