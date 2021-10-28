@@ -10,7 +10,9 @@ single table in the database, and allows you to add rows to that table.
 [![Reset Heroku DB][reset-badge]][reset-workflow]
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Prerequisites
@@ -28,9 +30,10 @@ Use one of these methods:
 Once you've installed Docker Desktop, you'll need to launch the app. On macOS,
 it's located in `/Applications/Docker`.
 
-### Node
+### Node and npm
 
-You'll need to install Node v14 or above. [`nvm`][nvm] is highly recommended.
+You'll need to install Node v16 and npm v8 or above. [`nvm`][nvm] is highly
+recommended.
 
 ## Create a New Repository From This Template
 
@@ -89,6 +92,34 @@ Visit <http://localhost:3000>.
 1. `Ctrl-C` to stop the Express and React development servers.
 1. `npm stop` to stop and destroy the PostgreSQL Docker container. Don't worry,
    your data is safe.
+
+## Add Dependencies to Your Web App
+
+At the project root, use the following command:
+
+```sh
+npm install ${package-name} -w app
+```
+
+E.g.
+
+```sh
+npm install ky -w app
+```
+
+## Add Dependencies to Your Server
+
+At the project root, use the following command:
+
+```sh
+npm install ${package-name} -w server
+```
+
+E.g.
+
+```sh
+npm install got -w server
+```
 
 ## Need to Start a `psql` Session?
 
