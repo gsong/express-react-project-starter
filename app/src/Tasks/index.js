@@ -24,8 +24,11 @@ const Tasks = () => {
 
 const TaskList = ({ tasks }) => (
   <ul className={styles.list}>
-    {tasks.map(({ id, name }) => (
-      <li key={id}>{name}</li>
+    {tasks.map(({ id, name, hasImage, imageUrl }) => (
+      <li key={id}>
+        {name}
+        {hasImage ? <img src={imageUrl} alt={name} /> : null}
+      </li>
     ))}
   </ul>
 );
@@ -36,22 +39,32 @@ const AddTask = ({ addTask }) => {
   const canAdd = task !== "";
 
   const onSubmit = (e) => {
+    const form = e.currentTarget;
+
     e.preventDefault();
     if (canAdd) {
-      addTask(task);
+      addTask(new FormData(form));
       setTask("");
     }
+
+    form.reset();
   };
 
   return (
-    <form {...{ onSubmit }}>
+    <form {...{ onSubmit }} className={styles.form}>
       <label>
-        New task:{" "}
-        <input onChange={(e) => setTask(e.currentTarget.value)} value={task} />
+        New task:
+        <input
+          name="name"
+          onChange={(e) => setTask(e.currentTarget.value)}
+          value={task}
+        />
       </label>
-      <button disabled={!canAdd} className={styles.button}>
-        Add
-      </button>
+      <label>
+        Image:
+        <input name="image" type="file" accept="image/*" />
+      </label>
+      <button disabled={!canAdd}>Add</button>
     </form>
   );
 };

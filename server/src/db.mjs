@@ -6,10 +6,19 @@ load_dotenv_if_exists();
 
 const db = initDb();
 
-export const getTasks = () => db.any("SELECT * FROM tasks");
+export const getTasks = () =>
+  db.any(
+    'SELECT id, name, (image IS NOT NULL) AS "hasImage" FROM tasks ORDER BY id',
+  );
 
-export const addTask = (name) =>
-  db.one("INSERT INTO tasks(name) VALUES($<name>) RETURNING *", { name });
+export const getTaskImage = (id) =>
+  db.one("SELECT image, mimetype FROM tasks WHERE id=$<id>", { id });
+
+export const addTask = (name, image, mimetype) =>
+  db.one(
+    "INSERT INTO tasks(name, image, mimetype) VALUES($<name>, $<image>, $<mimetype>) RETURNING *",
+    { name, image, mimetype },
+  );
 
 function initDb() {
   let connection;
