@@ -25,3 +25,20 @@ h1 {
   font-size: 1.25rem;
   margin: 1.5rem 0 0.5rem;
 }
+
+section:not(:first-of-type) {
+  margin-top: 2.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 0.5rem;
+
+  td {
+    padding: 0.5rem;
+  }
+
+  button {
+    margin-left: 0.5rem;
+  }
+}

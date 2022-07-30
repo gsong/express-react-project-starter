@@ -1,0 +1,15 @@
+@mixin input {
+  input {
+    margin-left: 0.5rem;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  align-items: flex-end;
+  width: fit-content;
+
+  @include input;
+}
