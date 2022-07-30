@@ -2,7 +2,7 @@ import * as React from "react";
 
 import * as apiClient from "../apiClient";
 
-import styles from "./styles.module.scss";
+import styles from "./styles.module.css";
 
 const Tasks = () => {
   const [tasks, setTasks] = React.useState([]);
