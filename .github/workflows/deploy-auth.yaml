@@ -1,0 +1,32 @@
+name: Deploy feature/auth to Heroku
+
+on:
+  push:
+    branches:
+      - feature/auth
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_AUTH_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_build_args: |
+            REACT_APP_TITLE
+            REACT_APP_SUBTITLE
+            REACT_APP_AUTH0_DOMAIN
+            REACT_APP_AUTH0_CLIENT_ID
+            REACT_APP_AUTH0_AUDIENCE
+        env:
+          REACT_APP_TITLE: ${{secrets.REACT_APP_TITLE}}
+          REACT_APP_SUBTITLE: ${{secrets.REACT_APP_SUBTITLE}}
+          REACT_APP_AUTH0_DOMAIN: ${{secrets.REACT_APP_AUTH0_DOMAIN}}
+          REACT_APP_AUTH0_CLIENT_ID: ${{secrets.REACT_APP_AUTH0_CLIENT_ID}}
+          REACT_APP_AUTH0_AUDIENCE: ${{secrets.REACT_APP_AUTH0_AUDIENCE}}

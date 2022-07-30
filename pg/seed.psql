@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.3
--- Dumped by pg_dump version 13.3
+-- Dumped from database version 13.4
+-- Dumped by pg_dump version 13.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -26,7 +26,8 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.tasks (
     id integer NOT NULL,
-    name text
+    name text NOT NULL,
+    user_id integer NOT NULL
 );
 
 
@@ -51,6 +52,34 @@ ALTER SEQUENCE public.tasks_id_seq OWNED BY public.tasks.id;
 
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    given_name text NOT NULL,
+    family_name text NOT NULL,
+    picture text,
+    email text,
+    sub text NOT NULL
+);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.users ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
 -- Name: tasks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -61,12 +90,21 @@ ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_
 -- Data for Name: tasks; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.tasks (id, name) FROM stdin;
-1	🙏 Be nice when you add test entries
-2	⏲ Added entries will be reset every Sunday
-3	End white supremacy
-4	Advocate for living wage
-5	Provide universal health care
+COPY public.tasks (id, name, user_id) FROM stdin;
+1	🙏 Be nice when you add test entries	1
+2	⏲ Added entries will be reset every Sunday	1
+3	End white supremacy	1
+4	Advocate for living wage	1
+5	Provide universal health care	1
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.users (id, given_name, family_name, picture, email, sub) FROM stdin;
+1	George	Song	https://lh3.googleusercontent.com/a-/AOh14GisMQBkZ6bxLA6L0p7EBnaPny8aK52UKRI2_tQIaw=s96-c	george@damacy.net	google-oauth2|111226858800048009044
 \.
 
 
@@ -74,7 +112,14 @@ COPY public.tasks (id, name) FROM stdin;
 -- Name: tasks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.tasks_id_seq', 5, true);
+SELECT pg_catalog.setval('public.tasks_id_seq', 6, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 1, true);
 
 
 --
@@ -83,6 +128,30 @@ SELECT pg_catalog.setval('public.tasks_id_seq', 5, true);
 
 ALTER TABLE ONLY public.tasks
     ADD CONSTRAINT tasks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_sub_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_sub_key UNIQUE (sub);
+
+
+--
+-- Name: tasks fk_user; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --

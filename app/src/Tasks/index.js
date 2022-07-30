@@ -1,20 +1,24 @@
 import * as React from "react";
 
-import * as apiClient from "../apiClient";
+import useApi from "../auth/useApi";
 
 import styles from "./styles.module.scss";
 
 const Tasks = () => {
   const [tasks, setTasks] = React.useState([]);
+  const { loading, apiClient } = useApi();
 
-  const loadTasks = async () => setTasks(await apiClient.getTasks());
+  const loadTasks = React.useCallback(
+    async () => setTasks(await apiClient.getTasks()),
+    [apiClient],
+  );
   const addTask = (task) => apiClient.addTask(task).then(loadTasks);
 
   React.useEffect(() => {
-    loadTasks();
-  }, []);
+    !loading && loadTasks();
+  }, [loading, loadTasks]);
 
-  return (
+  return loading ? null : (
     <section>
       <TaskList {...{ tasks }} />
       <AddTask {...{ addTask }} />
